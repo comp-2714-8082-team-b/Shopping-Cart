@@ -1,0 +1,2 @@
+# Shopping-Cart
+This is a simple shopping cart web app that we decided to develop for a course project. The shopping cart web app has the ability to update the items on display whenever the filter is updated, add items to a cart, and add items to the website. The goal of the developers is to learn how to implement and used a database while the goal of the managers is to learn and gain experience in project management.
