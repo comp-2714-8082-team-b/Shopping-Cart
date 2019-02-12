@@ -1,35 +1,45 @@
 version: 0.0
 os: linux
 files:
-  #- source: app
-    #destination: /var/www/html/app
-  #- source: bootstrap
-    #destination: /var/www/html/bootstrap
-  #- source: config
-    #destination: /var/www/html/config
-  #- source: database
-    #destination: /var/www/html/database
-  #- source: public
-    #destination: /var/www/html/public
-  #- source: resources
-    #destination: /var/www/html/resources
-  #- source: routes
-    #destination: /var/www/html/routes
-  #- source: storage
-    #destination: /var/www/html/storage
-  #- source: tests
-    #destination: /var/www/html/tests
   - source: /
     destination: /var/www/html
 hooks:
-  #BeforeInstall:
-    #- location: scripts/install_dependencies
-    #  timeout: 300
-    #  runas: root
-    #- location: scripts/start_server
-    #  timeout: 300
-    #  runas: root
-  #ApplicationStop:
-    #- location: scripts/stop_server
-    #  timeout: 300
-    #  runas: root
+  # This deployment lifecycle event occurs even before the application revision
+  # is downloaded. You can specify scripts for this event to gracefully stop
+  # the application or remove currently installed packages in preparation of a 
+  # deployment. The AppSpec file and scripts used for this deployment lifecycle
+  # event are from the previous successfully deployed application revision.
+  ApplicationStop:
+    - location: scripts/stopApplication.sh
+      timeout: 300
+      runas: root
+  # During this deployment lifecycle event, the CodeDeploy agent copies the 
+  # application revision files to a temporary location
+  DownloadBundle:
+  # You can use this deployment lifecycle event for preinstall tasks, such as
+  # decrypting files and creating a backup of the current version.
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh
+      timeout: 300
+      runas: root
+  # During this deployment lifecycle event, the CodeDeploy agent copies the
+  # revision files from the temporary location to the final destination folder.
+  # This event is reserved for the CodeDeploy agent and cannot be used to run
+  # scripts.
+  Install:
+  # You can use this deployment lifecycle event for tasks such as configuring
+  # your application or changing file permissions.
+  AfterInstall:
+    - location: scripts/afterInstall.sh
+      timeout: 300
+      runas: root
+  # You typically use this deployment lifecycle event to restart services that
+  # were stopped during ApplicationStop
+  ApplicationStart:
+    - location: scripts/startApplication.sh
+      timeout: 300
+      runas: root
+  # This is the last deployment lifecycle event. It is used to verify the
+  # deployment was completed successfully.
+  ValidateService:
+      
