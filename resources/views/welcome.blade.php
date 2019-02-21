@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Davin Was Here Again, Again, Again
+                    Davin Was Here
                 </div>
 
                 <div class="links">
