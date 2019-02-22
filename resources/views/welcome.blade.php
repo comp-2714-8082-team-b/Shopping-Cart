@@ -86,6 +86,9 @@
 				<div class="title m-b-md">
                     Pamir Was Here
                 </div>
+                <div class="title m-b-md">
+                    Ken Was Here
+                </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
