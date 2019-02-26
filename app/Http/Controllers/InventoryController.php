@@ -19,6 +19,6 @@ class InventoryController {
     //put your code here
     public function inventoryPage()
     {
-        return __METHOD__;
+        return view('inventory');
     }
 }
