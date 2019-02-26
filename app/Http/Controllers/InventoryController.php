@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Description of Inventory
@@ -20,5 +21,11 @@ class InventoryController {
     public function inventoryPage()
     {
         return view('inventory');
+    }
+    
+    public function getItems($index = '0')
+    {
+        $items = DB::select('');
+        return view('item', compact('items'));
     }
 }

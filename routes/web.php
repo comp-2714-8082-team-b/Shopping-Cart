@@ -17,3 +17,4 @@ Route::get('/', function () {
 });
  */
 Route::get('/', 'InventoryController@inventoryPage');
+Route::get('/getItems/{index}', 'InventoryController@getItems');
