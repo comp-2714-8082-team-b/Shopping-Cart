@@ -29,7 +29,9 @@ class InventoryController {
      */
     public function inventoryPage()
     {
-        return view('inventory');
+        $data = array();
+        $data["title"] = "Inventory";
+        return view('inventory', compact('data'));
     }
     
     /**
