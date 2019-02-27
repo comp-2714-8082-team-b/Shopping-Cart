@@ -17,4 +17,4 @@ Route::get('/', function () {
 });
  */
 Route::get('/', 'InventoryController@inventoryPage');
-Route::post('/getItems/{index}', 'InventoryController@getItems');
+Route::post('/getItems/{index}', 'InventoryController@getItems')->name('getItems');

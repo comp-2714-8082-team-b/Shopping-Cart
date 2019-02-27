@@ -41,7 +41,7 @@ class InventoryController {
      *                      the function will return the first 'x' rows.
      * @return type
      */
-    public function getItems(Request $request, $index = '0')
+    public function getItems(Request $request, $index = 0)
     {
         $result = "";
         $responseData = "";
@@ -49,11 +49,8 @@ class InventoryController {
         {
             $validator = Validator::make($request->all(),
                 [
-                    /*
-                     * 'typeOfCurrency' => 'required|max:10',
-                     * 'minPrice' => 'required|numeric|min:0|max:99999999999',
-                     * 'maxPrice' => 'required|numeric|gte:minPrice|min:0|max:99999999999',
-                     */
+                    'priceMin' => 'min:0|max:99999999999',
+                    'priceMax' => 'gte:priceMin|min:0|max:99999999999',
                 ]
             );
             if (!$validator->fails())
@@ -62,9 +59,10 @@ class InventoryController {
                  * $colName = ($request->input('correspondingInputName') !== null) ? $request->input('correspondingInputName') : <default value>;
                  * $results = DB::select('select * from users where id = :id', ['id' => 1]);
                  */
-                //$items = DB::select('');
+                //$items = array();
+                $items = DB::select('SELECT * FROM Item');
                 $result = "success";
-                //$responseData = view('item', compact('items'))->render();
+                $responseData = view('item', compact('items'))->render();
             }
             else
             {
@@ -77,6 +75,7 @@ class InventoryController {
             $result = "fail";
             $responseData = "POST request mandatory";
         }
+        return $responseData;
         return response()
             ->json([
                 'result' => $result,
