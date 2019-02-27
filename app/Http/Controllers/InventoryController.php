@@ -62,9 +62,9 @@ class InventoryController {
                  * $colName = ($request->input('correspondingInputName') !== null) ? $request->input('correspondingInputName') : <default value>;
                  * $results = DB::select('select * from users where id = :id', ['id' => 1]);
                  */
-                $items = DB::select('');
+                //$items = DB::select('');
                 $result = "success";
-                $responseData = view('item', compact('items'))->render();
+                //$responseData = view('item', compact('items'))->render();
             }
             else
             {
