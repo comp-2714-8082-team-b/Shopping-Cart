@@ -62,14 +62,22 @@ class InventoryController {
                 //$items = array();
                 $priceMin = ($request->input("priceMin") !== null) ? $request->input("priceMin") : 0;
                 $priceMax = ($request->input("priceMax") !== null) ? $request->input("priceMax") : 9999.99;
-                $brands = ($request->input("brand") !== null) ? $request->input("brand") : array();
-                for ($i = 0; $i < sizeof($brands); $i++) {
-                    $brands[$i] = "'" . $brands[$i] . "'";
-                }
+                $brands = ($request->input("brand") !== null) ? $request->input("brand") : [''];
+                $categories = ($request->input("category") !== null) ? $request->input("category") : [''];
                 
-                $x = join(', ', $brands);
-                $y = "SELECT * FROM Item WHERE (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($x))";
-                $items = DB::select($y);
+                for ($i = 0; $i < sizeof($brands); $i++) {
+                    $brands[$i] = "\"" . $brands[$i] . "\"";
+                }
+                $brands = join(', ', $brands);
+                for ($i = 0; $i < sizeof($categories); $i++) {
+                    $categories[$i] = "\"" . $categories[$i] . "\"";
+                }
+                $categories = join(', ', $categories);
+                
+                // Ken's area
+                $sql = "SELECT * FROM Item WHERE (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands))";
+                // End of Ken's area
+                $items = DB::select($sql);
                 $result = "success";
                 $responseData = view('item', compact('items'))->render();
             }
