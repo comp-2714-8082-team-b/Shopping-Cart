@@ -60,7 +60,12 @@ class InventoryController {
                  * $results = DB::select('select * from users where id = :id', ['id' => 1]);
                  */
                 //$items = array();
-                $items = DB::select('SELECT * FROM Item');
+                $priceMin = ($request->input('priceMin') == NULL) ? 0 : $request->input('priceMin');
+                $priceMax = ($request->input('priceMax') == NULL) ? 9999.99 : $request->input('priceMax');
+                $brand = ($request->input('brand') == NULL) ? array() : $request->input('brand');
+                // $items = DB::select('SELECT * from Item WHERE itemPrice BETWEEN 0 and 9999.99');
+                // return "SELECT * from Item WHERE (itemPrice BETWEEN :barf and :poop) AND (brandName IN (".print_r($brand)."))";
+                $items = DB::select('SELECT * from Item WHERE (itemPrice BETWEEN :barf and :poop) AND (brandName IN (:improper))', ['barf' => $priceMin, 'poop' => $priceMax, 'improper' => implode(',',$brand)]);
                 $result = "success";
                 $responseData = view('item', compact('items'))->render();
             }
@@ -75,7 +80,7 @@ class InventoryController {
             $result = "fail";
             $responseData = "POST request mandatory";
         }
-        return $responseData;
+        // return $responseData;
         return response()
             ->json([
                 'result' => $result,
