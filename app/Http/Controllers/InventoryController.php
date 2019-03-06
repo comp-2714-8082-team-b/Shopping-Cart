@@ -108,6 +108,8 @@ class InventoryController {
     
     public function cart()
     {
-        
+        $data = array();
+        $data["title"] = "Cart";
+        return view('cart', compact('data'));
     }
 }

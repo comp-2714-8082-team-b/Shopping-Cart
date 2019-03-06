@@ -19,4 +19,4 @@ Route::get('/', function () {
 Route::get('/', 'InventoryController@inventoryPage');
 Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
 Route::post('/addToCart', 'InventoryController@addToCart')->name('addToCart');
-Route::get('/cart', 'InventoryController@inventoryPage')->name('cart');
+Route::get('/cart', 'InventoryController@cart')->name('cart');

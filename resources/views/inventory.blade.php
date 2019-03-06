@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+<a href="{{ route('cart') }}">Cart</a>
 <h1>This is the Inventory Page</h1>
 <div id='filterSection'>
     <form action="" method="POST" id='filterForm'>
