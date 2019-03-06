@@ -107,19 +107,34 @@ class InventoryController {
         {
             $validator = Validator::make($request->all(),
                 [
-                    'addToCartButton' => 'required',
+                    'modelNumber' => 'required',
+                    'requestedQuantity' => 'required',
                 ]
             );
-             if (!$validator->fails())
+            if (!$validator->fails())
             {
-                $modelNumber = $request->input("addToCartButton");
+                $modelNumber = $request->input("modelNumber");
+                $requestedQuantity = $request->input("requestedQuantity");
                 
-                // Ken's area
-                $sql = "";
-                // End of Ken's area
-                $items = DB::insert($sql);
+                for ($i = 0; $i < $requestedQuantity; $i++)
+                {
+                    // Pamir's area
+                    //$sql = "";
+                    //$items = DB::insert($sql);
+                    // End of Pamir's area
+                }
+                
+                $itemName = DB::select("SELECT itemName FROM Item WHERE modelNumber = $modelNumber LIMIT 1")[0];
+                $itemName = $itemName->itemName;
                 $result = "success";
-                $responseData = "Added " .$modelNumber . " to cart";
+                if ($requestedQuantity == 1)
+                {
+                    $responseData = "Added $requestedQuantity $itemName to cart";
+                }
+                else
+                {
+                    $responseData = "Added $requestedQuantity $itemName" . "s to cart";
+                }
             }
             else
             {
@@ -132,5 +147,10 @@ class InventoryController {
             $result = "fail";
             $responseData = "POST request mandatory";
         }
+        return response()
+            ->json([
+                'result' => $result,
+                'data' => $responseData
+            ]);
     }
 }
