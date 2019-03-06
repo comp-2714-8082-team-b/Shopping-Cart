@@ -8,21 +8,19 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\User as User;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\DB; // So that you can make MySQL statements
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request; // For getting POST request data
-
 use Validator;
-
 
 /**
  * Description of Inventory
  *
  * @author DavinDeol
  */
-class InventoryController {
+class InventoryController extends Controller {
     
     function arrayToMySQLFriendly($array)
     {

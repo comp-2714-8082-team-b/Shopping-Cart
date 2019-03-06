@@ -16,7 +16,16 @@ Route::get('/', function () {
     return view('welcome');
 });
  */
-Route::get('/', 'InventoryController@inventoryPage');
-Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
-Route::post('/addToCart', 'InventoryController@addToCart')->name('addToCart');
-Route::get('/cart', 'InventoryController@cart')->name('cart');
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', 'InventoryController@inventoryPage')->name('inventory');
+    Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
+    Route::post('/addToCart', 'InventoryController@addToCart')->name('addToCart');
+    Route::get('/cart', 'InventoryController@cart')->name('cart');
+
+    Auth::routes();
+
+    Route::get('/login', 'LoginController@login')->name('login');
+    Route::post('/login', 'LoginController@submitLogin')->name('submitLogin');
+    Route::get('/register', 'RegisterController@register')->name('register');
+    Route::post('/register', 'RegisterController@submitRegister')->name('submitRegister');
+});

@@ -1,6 +1,10 @@
 @extends('layout')
 @section('content')
+@if (\Auth::check())
 <a href="{{ route('cart') }}">Cart</a>
+@else
+<a href="/login">Login</a>
+@endif
 <h1>This is the Inventory Page</h1>
 <div id='filterSection'>
     <form action="" method="POST" id='filterForm'>
@@ -18,7 +22,6 @@
    </form>
 </div>
 <div id='itemsSection'>
-    Stuff
 </div>
 <script>
     $(document).ready(function() {
