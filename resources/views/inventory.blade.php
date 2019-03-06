@@ -21,6 +21,24 @@
 </div>
 <script>
     $(document).ready(function() {
+        $(".addToCartButton").click(function() {
+            $.ajax({
+                url: "{{ route('getItems', ['index' => 0]) }}",
+                type:"POST",
+                processData: false,
+                contentType: false,
+                data: new FormData($('#filterForm')[0]),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    $("#itemsSection").append(response["data"]);
+                },error:function() {
+                    //alert(data.toString());
+                }
+            });
+        });
+        
         function sendRequest()
         {
             $.ajax({

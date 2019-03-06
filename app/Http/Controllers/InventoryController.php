@@ -98,4 +98,39 @@ class InventoryController {
                 'data' => $responseData
             ]);
     }
+    
+    public function addToCart(Request $request)
+    {
+        $result = "";
+        $responseData = "";
+        if ($request->isMethod('post'))
+        {
+            $validator = Validator::make($request->all(),
+                [
+                    'addToCartButton' => 'required',
+                ]
+            );
+             if (!$validator->fails())
+            {
+                $modelNumber = $request->input("addToCartButton");
+                
+                // Ken's area
+                $sql = "";
+                // End of Ken's area
+                $items = DB::insert($sql);
+                $result = "success";
+                $responseData = "Added " .$modelNumber . " to cart";
+            }
+            else
+            {
+                $result = "fail";
+                $responseData = $validator->errors()->messages();
+            }
+        }
+        else
+        {
+            $result = "fail";
+            $responseData = "POST request mandatory";
+        }
+    }
 }
