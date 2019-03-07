@@ -1,5 +1,10 @@
 @extends('layout')
 @section('content')
+@if (\Auth::check())
+<a href="{{ route('cart') }}">Cart</a>
+@else
+<a href="/login">Login</a>
+@endif
 <h1>This is the Inventory Page</h1>
 <div id='filterSection'>
     <form action="" method="POST" id='filterForm'>
@@ -17,14 +22,42 @@
    </form>
 </div>
 <div id='itemsSection'>
-    Stuff
 </div>
 <script>
     $(document).ready(function() {
-        function sendRequest()
+        $("body").on('click', '.addToCartButton', function() {
+            var modelNumber = $(this).val();
+            var quantityID = modelNumber + "Quantity";
+            var requestedQuantity = $("#" + quantityID).val();
+            $.ajax({
+                url: "{{ route('addToCart') }}",
+                type:"POST",
+                data: {
+                    modelNumber: modelNumber,
+                    requestedQuantity: requestedQuantity
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    if (response["data"] === "fail")
+                    {
+                        alert("Failed to add item to cart");
+                    }
+                    else
+                    {
+                        alert(response["data"]);
+                    }
+                },error:function() {
+                    alert("Failed to add item");
+                }
+            });
+        });
+        
+        function sendRequest(index)
         {
             $.ajax({
-                url: "{{ route('getItems', ['index' => 0]) }}",
+                url: "{{ route('getItems') }}/" + index,
                 type:"POST",
                 processData: false,
                 contentType: false,
@@ -43,6 +76,8 @@
         $("#submitPrice").click(function() {
             sendRequest();
         })
+        
+        sendRequest(0);
     });
 </script>
 @endsection
