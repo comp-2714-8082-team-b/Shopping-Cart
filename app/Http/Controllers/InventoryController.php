@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB; // So that you can make MySQL statements
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request; // For getting POST request data
 use Validator;
-
 /**
  * Description of Inventory
  *

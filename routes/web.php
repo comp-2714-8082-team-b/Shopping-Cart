@@ -28,4 +28,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/login', 'LoginController@submitLogin')->name('submitLogin');
     Route::get('/register', 'RegisterController@register')->name('register');
     Route::post('/register', 'RegisterController@submitRegister')->name('submitRegister');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
 });

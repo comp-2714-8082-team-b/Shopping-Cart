@@ -2,8 +2,9 @@
 @section('content')
 @if (\Auth::check())
 <a href="{{ route('cart') }}">Cart</a>
+<a href="{{ route('logout') }}">Logout</a>
 @else
-<a href="/login">Login</a>
+<a href="{{ route('login') }}">Login</a>
 @endif
 <h1>This is the Inventory Page</h1>
 <div id='filterSection'>

@@ -50,9 +50,22 @@ class LoginController extends Controller {
         if (!$validator->fails()) {
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials, $request->input('rememberMe'))) {
-                return Auth::User();
+                Auth::login(User::find($request->input('email')));
                 return redirect()->route('inventory');
+            } else {
+                return redirect()->route('login');
             }
+        } else {
+            return $validator->errors()->messages();
         }
+    }
+    
+    /**
+     * 
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('inventory');
     }
 }
