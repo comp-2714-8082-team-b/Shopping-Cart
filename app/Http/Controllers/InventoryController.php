@@ -81,6 +81,7 @@ class InventoryController {
                 // Ken's area
                 $sql = "SELECT * FROM Item WHERE (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands))";
                 // End of Ken's area
+                $items = DB::select($sql);
 
                 $result = "success";
                 $responseData = view('item', compact('items'))->render();
@@ -96,7 +97,6 @@ class InventoryController {
             $result = "fail";
             $responseData = "POST request mandatory";
         }
-
         return response()
             ->json([
                 'result' => $result,
