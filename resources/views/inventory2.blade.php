@@ -13,7 +13,8 @@
     
 </head>
 <body> -->
-
+    @extends('layout')
+    @section('semantic')
     <div class="ui top attached menu">
         <div class="ui icon item">
             <i class="home icon"></i>
