@@ -10,10 +10,11 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 </head>
 <body> -->
-
+    @extends('layout')
+    @section('semantic')
     <div class="ui top attached menu">
         <div class="ui icon item">
             <i class="home icon"></i>
