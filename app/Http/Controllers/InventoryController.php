@@ -50,6 +50,56 @@ class InventoryController extends Controller {
      */
     public function getItems(Request $request, $index = 0)
     {
+<<<<<<< HEAD
+        $result = "";
+        $responseData = "";
+        if ($request->isMethod('post'))
+        {
+            $validator = Validator::make($request->all(),
+                [
+                    'priceMin' => 'min:0|max:99999999999',
+                    'priceMax' => 'gte:priceMin|min:0|max:99999999999',
+                ]
+            );
+            if (!$validator->fails())
+            {
+                /*
+                 * $colName = ($request->input('correspondingInputName') !== null) ? $request->input('correspondingInputName') : <default value>;
+                 * $results = DB::select('select * from users where id = :id', ['id' => 1]);
+                 */
+                //$items = array();
+                $priceMin = ($request->input('priceMin') == NULL) ? 0 : $request->input('priceMin');
+                $priceMax = ($request->input('priceMax') == NULL) ? 9999.99 : $request->input('priceMax');
+                // $items = DB::select('SELECT * from Item WHERE itemPrice BETWEEN 0 and 9999.99');
+                // return "SELECT * from Item WHERE (itemPrice BETWEEN :barf and :poop) AND (brandName IN (".print_r($brand)."))";
+                $items = DB::select('SELECT * from Item WHERE (itemPrice BETWEEN :barf and :poop) AND (brandName IN (:improper))', ['barf' => $priceMin, 'poop' => $priceMax, 'improper' => implode(',',$brand)]);
+
+                $brands = ($request->input("brand") !== null) ? $request->input("brand") : [''];
+                $categories = ($request->input("category") !== null) ? $request->input("category") : [''];
+                
+                for ($i = 0; $i < sizeof($brands); $i++) {
+                    $brands[$i] = "\"" . $brands[$i] . "\"";
+                }
+                $brands = join(', ', $brands);
+                for ($i = 0; $i < sizeof($categories); $i++) {
+                    $categories[$i] = "\"" . $categories[$i] . "\"";
+                }
+                $categories = join(', ', $categories);
+                
+                // Ken's area
+                $sql = "SELECT * FROM Item WHERE (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands))";
+                // End of Ken's area
+                $items = DB::select($sql);
+
+                $result = "success";
+                $responseData = view('item', compact('items'))->render();
+            }
+            else
+            {
+                $result = "fail";
+                $responseData = $validator->errors()->messages();
+            }
+=======
         $validator = Validator::make($request->all(),
             [
                 'priceMin' => 'min:0|max:9999.99',
@@ -67,6 +117,7 @@ class InventoryController extends Controller {
         } else {
             $result = "fail";
             $responseData = $validator->errors()->messages();
+>>>>>>> 08c290c4423551ff8a169d3006f3aa911e299140
         }
         return response()->json(['result' => $result, 'data' => $responseData ]);
     }
