@@ -90,7 +90,7 @@ class InventoryController extends Controller {
             $requestedQuantity = $request->input("requestedQuantity");
 
             for ($i = 0; $i < $requestedQuantity; $i++) {
-                $items = DB::insert("INSERT INTO cartTable (email, modelNumber0) VALUES ('davindeol@gmail.com', '$modelNumber')");
+                $items = DB::insert("INSERT INTO Cart (email, modelNumber0) VALUES ('davindeol@gmail.com', '$modelNumber')");
             }
 
             $itemName = DB::select("SELECT itemName FROM Item WHERE modelNumber = $modelNumber LIMIT 1")[0]->itemName;

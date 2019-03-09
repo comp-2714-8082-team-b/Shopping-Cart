@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller {
     {
         $data = array();
         $data['title'] = "Forgot Password";
-        return view('register', compact('data'));
+        return view('forgotPassword', compact('data'));
     }
     public function submitForgotPassword(Request $request)
     {
@@ -32,12 +32,12 @@ class ForgotPasswordController extends Controller {
             ]
         );
         if (!$validator->fails()) {
-            $credentials = $request->only('email', 'password');
-            if (Auth::attempt($credentials, $request->input('rememberMe'))) {
-                Auth::login(User::find($request->input('email')));
-                return redirect()->route('inventory');
+            $email = $request->input('email');
+            $user = DB::select("SELECT * FROM Users WHERE email='$email'");
+            if (empty($user)) {
+                return "User does not exists";
             } else {
-                return redirect()->route('login');
+                return "User exists";
             }
         } else {
             return $validator->errors()->messages();
