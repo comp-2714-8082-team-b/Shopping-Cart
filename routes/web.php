@@ -26,6 +26,14 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/login', 'LoginController@submitLogin')->name('submitLogin');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
+    
     Route::get('/register', 'RegisterController@register')->name('register');
     Route::post('/register', 'RegisterController@submitRegister')->name('submitRegister');
+    
+    Route::get('/forgotPassword', 'ForgotPasswordController@forgotPassword')->name('forgotPassword');
+    Route::post('/forgotPassword', 'ForgotPasswordController@submitForgotPassword')->name('submitForgotPassword');
+    
+    Route::get('/resetPassword/{token}', 'ResetPasswordController@resetPassword')->name('resetPassword');
+    Route::post('/resetPassword/{token}', 'ResetPasswordController@submitResetPassword')->name('submitResetPassword');
 });

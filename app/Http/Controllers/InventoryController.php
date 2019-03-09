@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB; // So that you can make MySQL statements
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request; // For getting POST request data
 use Validator;
-
 /**
  * Description of Inventory
  *
@@ -91,7 +90,7 @@ class InventoryController extends Controller {
             $requestedQuantity = $request->input("requestedQuantity");
 
             for ($i = 0; $i < $requestedQuantity; $i++) {
-                $items = DB::insert("INSERT INTO cartTable (email, modelNumber0) VALUES ('davindeol@gmail.com', '$modelNumber')");
+                $items = DB::insert("INSERT INTO Cart (email, modelNumber0) VALUES ('davindeol@gmail.com', '$modelNumber')");
             }
 
             $itemName = DB::select("SELECT itemName FROM Item WHERE modelNumber = $modelNumber LIMIT 1")[0]->itemName;
