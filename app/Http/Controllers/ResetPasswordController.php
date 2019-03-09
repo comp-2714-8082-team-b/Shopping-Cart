@@ -40,6 +40,7 @@ class ResetPasswordController extends Controller {
             if (!empty($user)) {
                 $email = $user[0]->email;
                 DB::update("UPDATE Users SET password='$password' WHERE email='$email'");
+                DB::delete();
             }
             return redirect()->route('login');
         } else {
