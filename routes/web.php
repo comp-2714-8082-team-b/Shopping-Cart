@@ -31,4 +31,5 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/forgotPassword', 'ForgotPasswordController@forgotPassword')->name('forgotPassword');
     Route::post('/forgotPassword', 'ForgotPasswordController@submitForgotPassword')->name('submitForgotPassword');
     Route::get('/logout', 'LoginController@logout')->name('logout');
+    Route::get('/resetPassword/{token}', 'ResetPasswordController@resetPassword')->name('resetPassword');
 });

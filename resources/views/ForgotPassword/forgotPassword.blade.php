@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<h1>Login</h1>
+<h1>Forgot Password</h1>
 <form method="POST" action="{{ route('submitForgotPassword') }}">
     @csrf
     <input type="text" name="email" placeholder="email"/><br>
