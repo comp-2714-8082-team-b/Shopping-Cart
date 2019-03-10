@@ -17,7 +17,7 @@
     @section('content')
     <div class="ui top attached menu">
         <a href="./" class="item">
-                Shopping Website
+        {{ config('app.name', 'Laravel') }}
         </a>
         <div class="ui icon item">
             <i class="home icon"></i>
