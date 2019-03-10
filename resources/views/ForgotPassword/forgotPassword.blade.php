@@ -38,7 +38,7 @@
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
-                        <i class="user icon">
+                        <i class="envelope icon">
                         </i>
                         <input type="text" name="email" placeholder="Email Address">
                     </div>
@@ -52,12 +52,6 @@
             </div>
             <div class="ui error message"></div>
         </form>
-        <div class="ui message">
-            <div class="ui checkbox">
-                <input type="checkbox" name="example">
-                <label>Remember Me</label>
-            </div>
-        </div>
     </div>
 </div>
 

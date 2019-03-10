@@ -37,7 +37,7 @@
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
-                        <i class="user icon">
+                        <i class="envelope icon">
                         </i>
                         <input type="text" name="email" placeholder="Email Address">
                     </div>
