@@ -19,9 +19,9 @@
         <a href="./" class="item">
         {{ config('app.name', 'Laravel') }}
         </a>
-        <div class="ui icon item">
-            <i class="home icon"></i>
-        </div>
+        <a href="./"class="item">
+          <i class="home icon"></i>
+        </a>
         @if (\Auth::check())
         <a href="{{ route('logout')}}"class="item">
                 Login
