@@ -56,7 +56,7 @@
           <div class="three wide column ">
             <div class="ui vertical menu">
               <div id='filterSection'>
-                <div class='item'>
+                <div class="item">
                   <form action="" method="POST" id='filterForm'>
                     <div class="item">
                       <h2>Category</h2>
@@ -96,26 +96,20 @@
                         <label for="categoryComputer">Computer</label>
                       </div>
                     </div>
-                    <h2>Price Range</h2>
                     <div class="item">
+                      <h2>Price Range</h2>
                       <div class="ui input">
                         <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
-                      </div>
-                      <div class="item">
-                        <br>
                       </div>
                       <div class="ui input">
                         <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax'/>
                       </div>
-                    </div>
-                    <button class="ui primary button">
+                      <button class="ui primary button">
                         Save
-                    </button>
-
-                  </form>
+                      </button>
+                    </div> 
+                  </form>                  
                 </div>
-              </div>
-              <div id='itemsSection'>
               </div>
             </div>
           </div>
