@@ -46,7 +46,7 @@
                 <button class="ui button">
                     Submit
                 </button>
-                <div class="ui button" tabindex="0">
+                <div class="ui button" onclick="window.history.go(-1);">
                     Back
                 </div>
             </div>
