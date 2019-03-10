@@ -53,19 +53,21 @@
           <div class="three wide column ">
             <div class="ui vertical menu">
               <div id='filterSection'>
-                <form action="" method="POST" id='filterForm'>
-                  <h2>Category</h2>
-                  <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware' checked/><label for="categoryKitchenware"> Kitchenware</label><br>
-                  <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile' checked><label for="categoryAutomobile"> Automobile</label><br>
-                  <input type="checkbox" name="category[]" value="Clothing" id='categoryClothing' checked><label for="categoryClothing"> Clothing</label><br>
-                  <input type="checkbox" name="category[]" value="Computer" id='categoryComputer' checked><label for="categoryComputer"> Computer</label><br>
-                  <h2>Brand</h2>
-                  <input type="checkbox" name="brand[]" value="Apple" id='categoryApple' checked/><label for="categoryApple"> Apple</label><br>
-                  <input type="checkbox" name="brand[]" value="Nike" id='categoryNike' checked><label for="categoryNike"> Nike</label><br>
-                  <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid' checked><label for="categoryKitchenAid"> Kitchen Aid</label><br>
-                  <h2>Price Range</h2>
-                  $<input type="number" placeholder="min" id='priceMin' name='priceMin'/> - <input type="number" placeholder="max" id='priceMax' name='priceMax'/><button id='submitPrice' type='button'>Go</button>
-                </form>
+                <div class='item'>
+                  <form action="" method="POST" id='filterForm'>
+                    <h2>Category</h2>
+                    <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware' checked/><label for="categoryKitchenware"> Kitchenware</label><br>
+                    <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile' checked><label for="categoryAutomobile"> Automobile</label><br>
+                    <input type="checkbox" name="category[]" value="Clothing" id='categoryClothing' checked><label for="categoryClothing"> Clothing</label><br>
+                    <input type="checkbox" name="category[]" value="Computer" id='categoryComputer' checked><label for="categoryComputer"> Computer</label><br>
+                    <h2>Brand</h2>
+                    <input type="checkbox" name="brand[]" value="Apple" id='categoryApple' checked/><label for="categoryApple"> Apple</label><br>
+                    <input type="checkbox" name="brand[]" value="Nike" id='categoryNike' checked><label for="categoryNike"> Nike</label><br>
+                    <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid' checked><label for="categoryKitchenAid"> Kitchen Aid</label><br>
+                    <h2>Price Range</h2>
+                    $<input type="number" placeholder="min" id='priceMin' name='priceMin'/> - <input type="number" placeholder="max" id='priceMax' name='priceMax'/><button id='submitPrice' type='button'>Go</button>
+                  </form>
+                </div>
               </div>
               <div id='itemsSection'>
               </div>
@@ -75,7 +77,7 @@
             <div class="ui link cards right attached">
                 <div class="card">
                   <div class="image">
-                    <img src="semantic/image/iphone.jpg">
+                    <img src="{{ asset('public/semanticUI/semantic/image/iphone.jpg') }}">
                   </div>
                   <div class="content">
                     <div class="header">iPhone XS MAX 64GB</div>
@@ -98,7 +100,7 @@
                 </div>
                 <div class="card">
                   <div class="image">
-                    <img src="semantic/image/macbook_pro.png">
+                    <img src="{{ asset('public/semanticUI/semantic/image/macbook_pro.png') }}">
                   </div>
                   <div class="content">
                     <div class="header">MacBook Pro 15 inch</div>
@@ -121,7 +123,7 @@
                 </div>
                 <div class="card">
                   <div class="image">
-                    <img src="semantic/image/apple_watch.jpeg">
+                    <img src="{{ asset('public/semanticUI/semantic/image/apple_watch.jpeg') }}">
                   </div>
                   <div class="content">
                     <div class="header">Apple Watch</div>
