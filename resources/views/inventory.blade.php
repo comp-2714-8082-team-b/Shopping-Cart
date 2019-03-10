@@ -23,10 +23,7 @@
         <i class="home icon"></i>
     </a>
     @if (\Auth::check())
-    <a href="{{ route('cart') }}" class="item">
-        <i class="shopping cart icon"></i>
-    </a>
-    <a href="{{ route('logout')}}" class="item">
+    <a href="{{ route('login')}}" class="item">
         Login
     </a>
     <a class="item">
@@ -39,6 +36,9 @@
     </a>
     @endif
     <div class="right menu">
+    <a href="{{ route('cart') }}" class="item">
+        <i class="shopping cart icon"></i>
+    </a>
         <div class="ui right aligned category search item">
             <div class="ui transparent icon input">
                 <input class="prompt" type="text" placeholder="Search items...">
@@ -52,49 +52,50 @@
     <p></p>
 </div>
 <div class="ui grid">
+  <div class="row">
     <div class="three wide column">
         <div class="ui vertical menu">
             <form action="" method="POST" id='filterForm'>
                 <div class="item">
                     <h2>Category</h2>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware'>
                         <label for="categoryKitchenware">Kitchenware</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile'>
                         <label for="categoryAutomobile">Automobile</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryClothing'>
                         <label for="categoryClothing">Clothing</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
                         <label for="categoryComputer">Computer</label>
                     </div>
                 </div>
                 <div class="item">
                     <h2>Brand</h2>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="Apple" id='categoryApple'>
                         <label for="categoryApple">Apple</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="Nike" id='categoryNike'>
                         <label for="categoryNike">Nike</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid'>
                         <label for="categoryKitchenAid">Kitchen Aid</label>
                     </div>
-                    <div class="ui radio checkbox">
+                    <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
                         <label for="categoryComputer">Computer</label>
                     </div>
                 </div>
+                <h2>Price Range</h2>
                 <div class="item">
-                    <h2>Price Range</h2>
                     <div class="ui input">
                         <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
                     </div>
@@ -108,6 +109,7 @@
             </form>
         </div>
     </div>
+  </div>
 
 <div id="ten wide column">
     <div class="ui link cards">
