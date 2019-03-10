@@ -22,6 +22,7 @@
 	    font: inherit;
 	    cursor: pointer;
 	    outline: inherit;
+
     }
 </style>
 
