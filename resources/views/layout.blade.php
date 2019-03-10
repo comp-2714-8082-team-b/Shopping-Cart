@@ -29,16 +29,6 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
-        <script>
-            $(document).ready(function() {
-	            $('#my-range').range({
-		        min: 0,
-		        max: 10,
-		        start: 2,
-		        end: 9
-	        });
-});
-        </script>
     </head>
     <body>
         <!-- @yield('semantic')  -->
