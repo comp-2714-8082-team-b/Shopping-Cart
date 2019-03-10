@@ -15,7 +15,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/semantic.min.css') }}">
     </head>
     <body>
-        @yield('semantic') 
+        <!-- @yield('semantic')  -->
         @yield('content')
     </body>
 </html>

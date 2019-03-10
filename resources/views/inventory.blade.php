@@ -1,32 +1,156 @@
-@extends('layout')
-@section('content')
-@if (\Auth::check())
-<a href="{{ route('cart') }}">Cart</a>
-<a href="{{ route('logout') }}">Logout</a>
-@else
-<a href="{{ route('login') }}">Login</a>
-@endif
-<h1>This is the Inventory Page</h1>
-<div id='filterSection'>
-    <form action="" method="POST" id='filterForm'>
-        <h2>Category</h2>
-        <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware' checked/><label for="categoryKitchenware"> Kitchenware</label><br>
-        <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile' checked><label for="categoryAutomobile"> Automobile</label><br>
-        <input type="checkbox" name="category[]" value="Clothing" id='categoryClothing' checked><label for="categoryClothing"> Clothing</label><br>
-        <input type="checkbox" name="category[]" value="Computer" id='categoryComputer' checked><label for="categoryComputer"> Computer</label><br>
-        <h2>Brand</h2>
-        <input type="checkbox" name="brand[]" value="Apple" id='categoryApple' checked/><label for="categoryApple"> Apple</label><br>
-        <input type="checkbox" name="brand[]" value="Nike" id='categoryNike' checked><label for="categoryNike"> Nike</label><br>
-        <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid' checked><label for="categoryKitchenAid"> Kitchen Aid</label><br>
-        <h2>Price Range</h2>
-        $<input type="number" placeholder="min" id='priceMin' name='priceMin'/> - <input type="number" placeholder="max" id='priceMax' name='priceMax'/><button id='submitPrice' type='button'>Go</button>
-   </form>
-</div>
-<div id='itemsSection'>
-</div>
-<script>
-    $(document).ready(function() {
-        $("body").on('click', '.addToCartButton', function() {
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+</head>
+<body> -->
+    @extends('layout')
+    @section('content')
+    <div class="ui top attached menu">
+        <div class="ui icon item">
+            <i class="home icon"></i>
+        </div>
+        @if (\Auth::check())
+        <a href="{{ route('cart') }}" class="item">
+                <i class="shopping cart icon"></i>
+        </a>
+        <a href="{{ route('logout')}}"class="item">
+                Login
+        </a>
+        <a class="item">
+                <i class="rocket icon"></i>
+                Categories
+        </a>
+        @else
+        <a href="{{ route('logout')}}" class="item">
+                Logout
+        </a>
+        @endif
+        <div class="right menu">
+          <div class="ui right aligned category search item">
+            <div class="ui transparent icon input">
+              <input class="prompt" type="text" placeholder="Search items...">
+              <i class="search link icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+        </div>
+    </div>
+    <div class="ui bottom attached segment">
+      <p></p>
+    </div>
+      <div class="ui grid">
+        <div class="row">
+          <div class="three wide column ">
+            <div class="ui vertical menu">
+              <div id='filterSection'>
+                <div class='item'>
+                  <form action="" method="POST" id='filterForm'>
+                    <h2>Category</h2>
+                    <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware' checked/><label for="categoryKitchenware"> Kitchenware</label><br>
+                    <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile' checked><label for="categoryAutomobile"> Automobile</label><br>
+                    <input type="checkbox" name="category[]" value="Clothing" id='categoryClothing' checked><label for="categoryClothing"> Clothing</label><br>
+                    <input type="checkbox" name="category[]" value="Computer" id='categoryComputer' checked><label for="categoryComputer"> Computer</label><br>
+                    <h2>Brand</h2>
+                    <input type="checkbox" name="brand[]" value="Apple" id='categoryApple' checked/><label for="categoryApple"> Apple</label><br>
+                    <input type="checkbox" name="brand[]" value="Nike" id='categoryNike' checked><label for="categoryNike"> Nike</label><br>
+                    <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid' checked><label for="categoryKitchenAid"> Kitchen Aid</label><br>
+                    <h2>Price Range</h2>
+                    $<input type="number" placeholder="min" id='priceMin' name='priceMin'/> - <input type="number" placeholder="max" id='priceMax' name='priceMax'/><button id='submitPrice' type='button'>Go</button>
+                  </form>
+                </div>
+              </div>
+              <div id='itemsSection'>
+              </div>
+            </div>
+          </div>
+          <div class="twelve wide column">
+            <div class="ui link cards right attached">
+                <div class="card">
+                  <div class="image">
+                    <img src="{{ asset('public/semanticUI/semantic/image/iphone.jpg') }}">
+                  </div>
+                  <div class="content">
+                    <div class="header">iPhone XS MAX 64GB</div>
+                    <div class="meta">
+                      <a>Apple</a>
+                    </div>
+                    <div class="description">
+                      A phone with sophisticated simplicity.
+                    </div>
+                  </div>
+                  <div class="extra content">
+                    <span class="right floated">
+                      $1505
+                    </span>
+                    <span>
+                      <i class="heart icon"></i>
+                      75
+                    </span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="image">
+                    <img src="{{ asset('public/semanticUI/semantic/image/macbook_pro.png') }}">
+                  </div>
+                  <div class="content">
+                    <div class="header">MacBook Pro 15 inch</div>
+                    <div class="meta">
+                      <span class="date">Apple</span>
+                    </div>
+                    <div class="description">
+                      A beautiful piece of art.
+                    </div>
+                  </div>
+                  <div class="extra content">
+                    <span class="right floated">
+                      $1823
+                    </span>
+                    <span>
+                      <i class="heart icon"></i>
+                      35
+                    </span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="image">
+                    <img src="{{ asset('public/semanticUI/semantic/image/apple_watch.jpeg') }}">
+                  </div>
+                  <div class="content">
+                    <div class="header">Apple Watch</div>
+                    <div class="meta">
+                      <a>Apple</a>
+                    </div>
+                    <div class="description">
+                      A device on your arm.
+                    </div>
+                  </div>
+                  <div class="extra content">
+                    <span class="right floated">
+                      $523
+                    </span>
+                    <span>
+                      <i class="heart icon"></i>
+                      151
+                    </span>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>  
+      <script>
+        $(document).ready(function() {
+          $("body").on('click', '.addToCartButton', function() {
             var modelNumber = $(this).val();
             var quantityID = modelNumber + "Quantity";
             var requestedQuantity = $("#" + quantityID).val();
@@ -53,10 +177,10 @@
                     alert("Failed to add item");
                 }
             });
-        });
+          });
         
-        function sendRequest(index)
-        {
+          function sendRequest(index)
+          {
             $.ajax({
                 url: "{{ route('getItems') }}/" + index,
                 type:"POST",
@@ -72,13 +196,15 @@
                     //alert(data.toString());
                 }
             });
-        }
+          }
         
-        $("#submitPrice").click(function() {
+          $("#submitPrice").click(function() {
             sendRequest();
-        })
+          })
         
-        sendRequest(0);
-    });
-</script>
-@endsection
+          sendRequest(0);
+          });
+        </script> 
+        @endsection
+<!-- </body>
+</html> -->
