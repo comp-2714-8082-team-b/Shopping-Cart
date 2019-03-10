@@ -21,6 +21,7 @@
         </a>
         <a href="./"class="item">
           <i class="home icon"></i>
+          HOme
         </a>
         @if (\Auth::check())
         <a href="{{ route('logout')}}"class="item">
