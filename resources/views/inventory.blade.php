@@ -19,9 +19,9 @@
         <a href="./" class="item">
         {{ config('app.name', 'Laravel') }}
         </a>
-        <div class="ui icon item">
-            <i class="home icon"></i>
-        </div>
+        <a href="./"class="item">
+          <i class="home icon"></i>
+        </a>
         @if (\Auth::check())
         <a href="{{ route('logout')}}"class="item">
                 Login
@@ -31,7 +31,7 @@
                 Categories
         </a>
         @else
-        <a href="{{ route('logout')}}" class="item">
+        <a href="{{ route('login')}}" class="item">
                 Logout
         </a>
         @endif
@@ -51,10 +51,9 @@
     <div class="ui bottom attached segment">
       <p></p>
     </div>
-      <div class="ui grid">
-        <div class="row">
-          <div class="three wide column ">
-            <div class="ui vertical menu">
+      <div class="ui grid" id="container">
+          <div id="left">
+            <div class="ui vertical menu right floated">
               <div id='filterSection'>
                 <div class='item'>
                   <form action="" method="POST" id='filterForm'>
@@ -98,7 +97,7 @@
                     </div>
                     <h2>Price Range</h2>
                     <div class="item">
-                      <div class="ui input">
+                      <div id="flat-slider>
                         <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
                       </div>
                       <div class="item">
@@ -115,11 +114,9 @@
                   </form>
                 </div>
               </div>
-              <div id='itemsSection'>
-              </div>
             </div>
           </div>
-          <div class="twelve wide column">
+          <div id="right">
             <div class="ui link cards right attached">
                 <div class="card">
                   <div class="image">
@@ -192,7 +189,6 @@
                 </div>
               </div>
           </div>
-        </div>
       </div>  
       <script>
         $(document).ready(function() {
