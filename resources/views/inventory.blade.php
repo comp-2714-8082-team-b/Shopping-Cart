@@ -23,9 +23,6 @@
             <i class="home icon"></i>
         </div>
         @if (\Auth::check())
-        <a href="{{ route('cart') }}" class="item">
-                <i class="shopping cart icon"></i>
-        </a>
         <a href="{{ route('logout')}}"class="item">
                 Login
         </a>
@@ -39,9 +36,12 @@
         </a>
         @endif
         <div class="right menu">
+          <a href="{{ route('cart') }}" class="item">
+            <i class="shopping cart icon"> </i>
+          </a>
           <div class="ui right aligned category search item">
             <div class="ui transparent icon input">
-              <input class="prompt" type="text" placeholder="Search items...">
+              <input class="prompt" type="text" placeholder=" Search items...">
               <i class="search link icon"></i>
             </div>
             <div class="results"></div>
@@ -60,38 +60,38 @@
                   <form action="" method="POST" id='filterForm'>
                     <div class="item">
                       <h2>Category</h2>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware'>
                         <label for="categoryKitchenware">Kitchenware</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile'>
                         <label for="categoryAutomobile">Automobile</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryClothing'>
                         <label for="categoryClothing">Clothing</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
                         <label for="categoryComputer">Computer</label>
                       </div>
                     </div>
                     <div class="item">
                       <h2>Brand</h2>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="Apple" id='categoryApple'>
                         <label for="categoryApple">Apple</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="Nike" id='categoryNike'>
                         <label for="categoryNike">Nike</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid'>
                         <label for="categoryKitchenAid">Kitchen Aid</label>
                       </div>
-                      <div class="ui radio checkbox">
+                      <div class="ui checkbox">
                         <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
                         <label for="categoryComputer">Computer</label>
                       </div>
