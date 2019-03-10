@@ -58,17 +58,60 @@
               <div id='filterSection'>
                 <div class='item'>
                   <form action="" method="POST" id='filterForm'>
-                    <h2>Category</h2>
-                    <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware' checked/><label for="categoryKitchenware"> Kitchenware</label><br>
-                    <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile' checked><label for="categoryAutomobile"> Automobile</label><br>
-                    <input type="checkbox" name="category[]" value="Clothing" id='categoryClothing' checked><label for="categoryClothing"> Clothing</label><br>
-                    <input type="checkbox" name="category[]" value="Computer" id='categoryComputer' checked><label for="categoryComputer"> Computer</label><br>
-                    <h2>Brand</h2>
-                    <input type="checkbox" name="brand[]" value="Apple" id='categoryApple' checked/><label for="categoryApple"> Apple</label><br>
-                    <input type="checkbox" name="brand[]" value="Nike" id='categoryNike' checked><label for="categoryNike"> Nike</label><br>
-                    <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid' checked><label for="categoryKitchenAid"> Kitchen Aid</label><br>
+                    <div class="item">
+                      <h2>Category</h2>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="category[]" value="Kitchenware" id='categoryKitchenware'>
+                        <label for="categoryKitchenware">Kitchenware</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="category[]" value="Automobile" id='categoryAutomobile'>
+                        <label for="categoryAutomobile">Automobile</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="category[]" value="Automobile" id='categoryClothing'>
+                        <label for="categoryClothing">Clothing</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
+                        <label for="categoryComputer">Computer</label>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <h2>Brand</h2>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="brand[]" value="Apple" id='categoryApple'>
+                        <label for="categoryApple">Apple</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="brand[]" value="Nike" id='categoryNike'>
+                        <label for="categoryNike">Nike</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="brand[]" value="KitchenAid" id='categoryKitchenAid'>
+                        <label for="categoryKitchenAid">Kitchen Aid</label>
+                      </div>
+                      <div class="ui radio checkbox">
+                        <input type="checkbox" name="category[]" value="Automobile" id='categoryComputer'>
+                        <label for="categoryComputer">Computer</label>
+                      </div>
+                    </div>
                     <h2>Price Range</h2>
-                    $<input type="number" placeholder="min" id='priceMin' name='priceMin'/> - <input type="number" placeholder="max" id='priceMax' name='priceMax'/><button id='submitPrice' type='button'>Go</button>
+                    <div class="item">
+                      <div class="ui input">
+                        <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
+                      </div>
+                      <div class="item">
+                        <br>
+                      </div>
+                      <div class="ui input">
+                        <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax'/>
+                      </div>
+                    </div>
+                    <button class="ui primary button">
+                        Save
+                    </button>
+
                   </form>
                 </div>
               </div>
