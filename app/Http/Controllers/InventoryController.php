@@ -61,7 +61,8 @@ class InventoryController extends Controller {
             $priceMax = ($request->input("priceMax") !== null) ? $request->input("priceMax") : 9999.99;
             $brands = InventoryController::arrayToMySQLFriendly($request->input("brand", ['']));
             $categories = InventoryController::arrayToMySQLFriendly($request->input("category", ['']));
-            $items = DB::select("SELECT * FROM Item WHERE (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands)) LIMIT $index,10");
+            $items = DB::select("SELECT * FROM Item JOIN Category ON Item.modelNumber = Category.modelNumber 
+            WHERE (category IN ($categories)) AND (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands)) LIMIT $index,10");
             $result = "success";
             $responseData = view('item', compact('items'))->render();
         } else {
