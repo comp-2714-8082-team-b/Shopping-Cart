@@ -16,6 +16,9 @@
     @extends('layout')
     @section('content')
     <div class="ui top attached menu">
+        <a href="./" class="item">
+                Shopping Website
+        </a>
         <div class="ui icon item">
             <i class="home icon"></i>
         </div>
