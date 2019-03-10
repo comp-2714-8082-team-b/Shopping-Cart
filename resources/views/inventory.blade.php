@@ -51,9 +51,9 @@
     <div class="ui bottom attached segment">
       <p></p>
     </div>
-      <div class="ui grid" id="container">
-          <div id="left">
-            <div class="ui vertical menu right floated">
+      <div class="ui grid">
+          <div id="six wide column">
+            <div class="ui vertical menu left attached">
               <div id='filterSection'>
                 <div class="item">
                   <form action="" method="POST" id='filterForm'>
@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <div id="right">
+          <div id="ten wide column">
             <div class="ui link cards right attached">
                 <div class="card">
                   <div class="image">

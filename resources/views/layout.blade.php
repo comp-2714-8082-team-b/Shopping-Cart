@@ -29,28 +29,6 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
-        <style>
-                #container{
-        width: 70%;
-        min-width: 1000px;
-        margin: auto;
-    }
-    #left {
-        float: left;
-        width: 20%;
-        background: #ccc;
-    }
-    #content {
-        float: left;
-        width: 60%;
-        background: #ff0;        
-    }
-    #right {
-        float: right;
-        width: 20%;
-        background: #ccc;
-    }
-        </style>
     </head>
     <body>
         <!-- @yield('semantic')  -->
