@@ -13,6 +13,22 @@ and open the template in the editor.
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('public/semanticUI/semantic/out/semantic.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/semantic.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/reset.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/site.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/container.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/grid.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/header.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/image.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/divider.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/segment.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/form.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/input.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/button.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/list.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/message.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
+        <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
+        <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
     </head>
     <body>
         <!-- @yield('semantic')  -->

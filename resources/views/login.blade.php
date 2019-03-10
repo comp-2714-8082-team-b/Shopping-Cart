@@ -1,5 +1,93 @@
 @extends('layout')
 @section('content')
+<style type="text/css">
+    body {
+      background-color: white;
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+
+    button {
+        background: none;
+	    color: inherit;
+	    border: none;
+	    padding: 0;
+	    font: inherit;
+	    cursor: pointer;
+	    outline: inherit;
+    }
+</style>
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <div class="content">
+                Log-in to your account 
+            </div>
+        </h2>
+        <form class="ui large form" method="POST" action="{{ route('submitLogin') }}">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon">
+                        </i>
+                        <input type="text" name="email" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon">
+                        </i>
+                        <input type="text" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button">
+                    <button type="submit">
+                        Submit
+                    </button>
+                </div>
+            </div>
+            <div class="ui error message"></div>
+        </form>
+        <div class="ui message">
+            <div class="ui checkbox">
+                <input type="checkbox" name="example">
+                <label>Remember Me</label>
+            </div>
+        </div>
+
+            <div class="ui animated button" tabindex="0">
+                <a href="{{ route('register') }}">
+                <div class="visible content">Register</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+                </a>
+            </div>
+            <div class="ui animated button" tabindex="0">
+                <a href="{{ route('forgotPassword') }}">
+                <div class="visible content">Forgot Password</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+                </a>
+            </div>
+</div>
+
+<!-- 
+
+
+
+
+
+
 <h1>Login</h1>
 <form method="POST" action="{{ route('submitLogin') }}">
     @csrf
@@ -11,5 +99,5 @@
     <a href="{{ route('register') }}"><button type="button">Register</button>
     <a href="{{ route('forgotPassword') }}"><button type="button">Forgot Password</button>
     <a href="{{ route('inventory') }}"><button type="button">Back to Inventory</button></a>
-</form>
+</form> -->
 @endsection
