@@ -12,7 +12,6 @@ and open the template in the editor.
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('public/semanticUI/semantic/out/semantic.min.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/rangeselector.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/semantic.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/reset.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/site.css') }}">
@@ -28,7 +27,6 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/list.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/message.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
-        <script src="{{ asset('public/semanticUI/semantic/out/components/rangeselector.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
         <script>
