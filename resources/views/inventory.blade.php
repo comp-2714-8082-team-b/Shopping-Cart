@@ -23,16 +23,16 @@
         <i class="home icon"></i>
     </a>
     @if (\Auth::check())
+    <a href="{{ route('logout')}}" class="item">
+        Logout
+    </a>
+    @else
     <a href="{{ route('login')}}" class="item">
         Login
     </a>
     <a class="item">
         <i class="rocket icon"></i>
         Categories
-    </a>
-    @else
-    <a href="{{ route('login')}}" class="item">
-        Logout
     </a>
     @endif
     <div class="right menu">
