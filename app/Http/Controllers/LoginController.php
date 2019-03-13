@@ -48,7 +48,6 @@ class LoginController extends Controller {
         );
 
         if (!$validator->fails()) {
-            
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials, $request->input('rememberMe'))) {
                 Auth::login(User::find($request->input('email')));

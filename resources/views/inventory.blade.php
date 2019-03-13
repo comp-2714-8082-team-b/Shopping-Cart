@@ -1,56 +1,6 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
-</head>
-<body> -->
-@extends('layout')
+@extends('Layout/layout')
+@include('Layout/header')
 @section('content')
-<div class="ui top attached menu">
-    <a href="./" class="item">
-        {{ config('app.name', 'Laravel') }}
-    </a>
-    <a href="./" class="item">
-        <i class="home icon"></i>
-    </a>
-    @if (\Auth::check())
-    <a href="{{ route('logout')}}" class="item">
-        Logout
-    </a>
-    @else
-    <a href="{{ route('login')}}" class="item">
-        Login
-    </a>
-    <a class="item">
-        <i class="rocket icon"></i>
-        Categories
-    </a>
-    @endif
-    <div class="right menu">
-    <a href="{{ route('cart') }}" class="item">
-        <i class="shopping cart icon"></i>
-    </a>
-        <div class="ui right aligned category search item">
-            <div class="ui transparent icon input">
-                <input class="prompt" type="text" placeholder="Search items...">
-                <i class="search link icon"></i>
-            </div>
-            <div class="results"></div>
-        </div>
-    </div>
-</div>
-<div class="ui bottom attached segment">
-    <p></p>
-</div>
 <div class="ui grid">
   <div class="row">
     <div class="three wide column">

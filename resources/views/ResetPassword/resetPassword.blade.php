@@ -1,4 +1,5 @@
-@extends('layout')
+@extends('Layout/layout')
+@include('Layout/header')
 @section('content')
 <h1>Reset Password</h1>
 <form method="POST" action="{{ route('submitResetPassword', ['token' => $token]) }}">
