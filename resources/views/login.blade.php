@@ -46,6 +46,14 @@
         </form>
 
         <div class="ui animated button" tabindex="0">
+            <a href="{{ route('home') }}">
+            <div class="visible content">Back</div>
+            <div class="hidden content">
+                <i class="right arrow icon"></i>
+            </div>
+            </a>
+        </div>
+        <div class="ui animated button" tabindex="0">
             <a href="{{ route('register') }}">
             <div class="visible content">Register</div>
             <div class="hidden content">
