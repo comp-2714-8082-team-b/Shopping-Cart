@@ -59,7 +59,7 @@
                         Submit
                     </button>
                 </div>
-                </div>
+            </div>
             <div class="ui error message"></div>
             @if ($errors->any())
                 <div class="ui red message">

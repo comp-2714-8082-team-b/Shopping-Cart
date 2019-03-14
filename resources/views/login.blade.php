@@ -25,6 +25,12 @@
                         <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                     </div>
                 </div>
+        <div class="ui message">
+            <div class="ui checkbox">
+                <input type="checkbox" name="example">
+                <label>Remember Me</label>
+            </div>
+        </div>
                 <div class="ui fluid large teal submit button">
                     <button type="submit">
                         Submit
@@ -38,12 +44,6 @@
                 </div>
             @endif
         </form>
-        <div class="ui message">
-            <div class="ui checkbox">
-                <input type="checkbox" name="example">
-                <label>Remember Me</label>
-            </div>
-        </div>
 
         <div class="ui animated button" tabindex="0">
             <a href="{{ route('register') }}">
