@@ -1,4 +1,9 @@
-@extends('layout')
+@extends('Layout/layout')
+@include('Layout/header')
 @section('content')
-<h1>Cart Page</h1>
+@for ($i = 0; $i < 10; $i++)
+    @if ($itemsInCart["modelNumber" . $i])
+    <p>{{ $itemsInCart["modelNumber" . $i] }}
+    @endif
+@endfor
 @endsection

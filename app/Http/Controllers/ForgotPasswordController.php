@@ -25,25 +25,25 @@ class ForgotPasswordController extends Controller {
     }
     public function submitForgotPassword(Request $request)
     {
-        $validator = \Validator::make($request->all(), ['email' => 'required']);
+        $validator = \Validator::make($request->all(), ['email' => 'required|filled|max:127|exists:Users,email']);
         if (!$validator->fails()) {
             $email = $request->input('email');
-            $user = DB::select("SELECT * FROM Users WHERE email='$email'");
-            if (empty($user)) {
-                return "User does not exists";
-            } else {
-                $user = $user[0];
-                $token = str_random(20);
-                DB::insert("INSERT INTO PasswordResets (email, token) VALUES ('$email', '$token')");
-                Mail::send('Email.resetPassword', ['token' => $token], function ($m) use ($user) {
-                    $m->to($user->email, $user->firstName . " " . $user->lastName)->subject("Password Reset Link");
-                });
-                $data = array();
-                $data['title'] = "Reset Password Link Sent";
-                return view('ForgotPassword/emailSent', compact('data'));
+            $token = str_random(20);
+            $previousLinks = DB::select("SELECT * FROM PasswordResets WHERE email='$email'");
+            
+            if (!empty($previousLinks)) {
+                DB::delete("DELETE FROM PasswordResets WHERE email='$email'");
             }
+            
+            DB::insert("INSERT INTO PasswordResets (email, token) VALUES ('$email', '$token')");
+            Mail::send('Email.resetPassword', ['token' => $token], function ($m) use ($email) {
+                $m->to($email)->subject("Password Reset Link");
+            });
+            $data = array();
+            $data['title'] = "Reset Password Link Sent";
+            return view('ForgotPassword/emailSent', compact('data'));
         } else {
-            return $validator->errors()->messages();
+            return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
 }

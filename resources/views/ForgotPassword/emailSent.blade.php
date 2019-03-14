@@ -1,5 +1,19 @@
-@extends('layout')
+@extends('Layout/layout')
 @section('content')
-<h1>Password Reset Link Sent</h1>
-<a href="{{ route('inventory') }}"><button type="button">Back to Inventory</button></a>
+@include('Layout/singleFormStyle')
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <div class="content">
+                Password Reset Link Sent
+            </div>
+        </h2>
+        
+        <div class="ui fluid large teal submit button">
+            <a href="{{ route('home') }}" style="color:white;">
+                   Back
+            </a>
+        </div>
+    </div>
+</div>
 @endsection
