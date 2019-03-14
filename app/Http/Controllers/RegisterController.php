@@ -43,11 +43,12 @@ class RegisterController extends Controller {
     {
         $validator = \Validator::make($request->all(),
             [
-                'email' => 'required|email',
-                'username' => 'required',
-                'password' => 'required',
-                'firstName' => 'required',
-                'lastName' => 'required'
+                'email' => 'required|filled|email|max:127|unique:Users,email',
+                'username' => 'required|filled|min:6|max:63',
+                'password' => 'required|filled|min:6|max:20',
+                'conFirmpassword' => 'required|filled|min:6|max:20|same:password',
+                'firstName' => 'required|filled|min:1|max:63|alpha',
+                'lastName' => 'present'
             ]
         );
         if (!$validator->fails()) {
@@ -56,14 +57,13 @@ class RegisterController extends Controller {
             $password = Hash::make($request->input("password"));
             $firstName = $request->input("firstName");
             $lastName = $request->input("lastName");
-            
             DB::insert("INSERT INTO Users (email, username, password, firstName, lastName) VALUES ('$email', '$username', '$password', '$firstName', '$lastName')");
-            
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                return redirect()->route('inventory');
+                return redirect()->route('home');
             }
+        } else {
+            return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
-        return register();
     }
 }

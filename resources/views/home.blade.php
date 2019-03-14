@@ -1,42 +1,6 @@
 @extends('Layout/layout')
 @include('Layout/header')
 @section('content')
-<div class="ui top attached menu">
-    <a href="./" class="item">
-        {{ config('app.name', 'Laravel') }}
-    </a>
-    <a href="./" class="item">
-        <i class="home icon"></i>
-    </a>
-    @if (\Auth::check())
-    <a href="{{ route('login')}}" class="item">
-        Login
-    </a>
-    <a class="item">
-        <i class="rocket icon"></i>
-        Categories
-    </a>
-    @else
-    <a href="{{ route('login')}}" class="item">
-        Logout
-    </a>
-    @endif
-    <div class="right menu">
-    <a href="{{ route('cart') }}" class="item">
-        <i class="shopping cart icon"></i>
-    </a>
-        <div class="ui right aligned category search item">
-            <div class="ui transparent icon input">
-                <input class="prompt" type="text" placeholder="Search items...">
-                <i class="search link icon"></i>
-            </div>
-            <div class="results"></div>
-        </div>
-    </div>
-</div>
-<div class="ui bottom attached segment">
-    <p></p>
-</div>
 <div class="ui grid">
   <div class="row">
     <div class="three wide column">
@@ -80,15 +44,11 @@
                         <label for="categoryComputer">Computer</label>
                     </div>
                 </div>
+                <h2>Price Range</h2>
                 <div class="item">
-                  <h2>Price Range</h2>
-                    <div class="ui ">
-                    From
-                    </div>             
                     <div class="ui input">
                         <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
                     </div>
-                    Up To
                     <div class="ui input">
                         <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax' />
                     </div>
@@ -99,6 +59,7 @@
             </form>
         </div>
     </div>
+  </div>
 
 <div id="ten wide column">
     <div class="ui link cards">
@@ -174,7 +135,6 @@
     </div>
 </div>
 </div>
-</div>
 
 <script>
     $(document).ready(function () {
@@ -232,7 +192,4 @@
     });
 
 </script>
-<!-- </body>
-</html> -->
-<h1>Inventory Page</h1>
 @endsection
