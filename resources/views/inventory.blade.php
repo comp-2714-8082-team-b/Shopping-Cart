@@ -94,11 +94,15 @@
                         <label for="categoryComputer">Computer</label>
                     </div>
                 </div>
-                <h2>Price Range</h2>
                 <div class="item">
+                  <h2>Price Range</h2>
+                    <div class="ui ">
+                    From
+                    </div>             
                     <div class="ui input">
                         <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
                     </div>
+                    Up To
                     <div class="ui input">
                         <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax' />
                     </div>
@@ -109,7 +113,6 @@
             </form>
         </div>
     </div>
-  </div>
 
 <div id="ten wide column">
     <div class="ui link cards">
@@ -183,6 +186,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 

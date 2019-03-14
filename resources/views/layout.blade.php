@@ -29,9 +29,6 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
-        <script>
-            $('.ui.sidebar').sidebar('toggle');
-        </script>
     </head>
     <body>
         <!-- @yield('semantic')  -->
