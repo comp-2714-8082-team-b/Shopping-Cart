@@ -15,14 +15,14 @@
                     <div class="ui left icon input">
                         <i class="envelope icon">
                         </i>
-                        <input type="text" name="email" placeholder="Email Address">
+                        <input type="text" name="email" placeholder="Email Address" value="{{ old('email') }}">
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon">
                         </i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                     </div>
                 </div>
                 <div class="ui fluid large teal submit button">
@@ -32,6 +32,11 @@
                 </div>
             </div>
             <div class="ui error message"></div>
+            @if ($errors->any())
+                <div class="ui red message">
+                    {!! implode('', $errors->all(':message</br>')) !!}
+                </div>
+            @endif
         </form>
         <div class="ui message">
             <div class="ui checkbox">
@@ -58,6 +63,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $("#loginForm")
         .form({

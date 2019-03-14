@@ -53,10 +53,10 @@ class LoginController extends Controller {
                 Auth::login(User::find($request->input('email')));
                 return redirect()->route('home');
             } else {
-                return redirect()->route('login');
+                return redirect()->back()->withInput($request->input())->withErrors([0 => "Invalid login"]);
             }
         } else {
-            return redirect()->route('login');
+            return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
     
