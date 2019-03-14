@@ -21,7 +21,7 @@ class ResetPasswordController extends Controller {
         $data = array();
         $data['title'] = "Reset Password";
         if (empty(DB::select("SELECT * FROM PasswordResets WHERE token='$token'"))) {
-            return redirect()->route('inventory');
+            return redirect()->route('home');
         } else {
             return view('ResetPassword/resetPassword', compact('data', 'token'));
         }

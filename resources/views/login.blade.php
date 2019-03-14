@@ -8,7 +8,7 @@
                 Log-in to your account 
             </div>
         </h2>
-        <form class="ui large form" method="POST" action="{{ route('submitLogin') }}">
+        <form class="ui large form" method="POST" action="{{ route('submitLogin') }}" id="loginForm">
             @csrf
             <div class="ui stacked segment">
                 <div class="field">
@@ -40,41 +40,56 @@
             </div>
         </div>
 
-            <div class="ui animated button" tabindex="0">
-                <a href="{{ route('register') }}">
-                <div class="visible content">Register</div>
-                <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                </div>
-                </a>
+        <div class="ui animated button" tabindex="0">
+            <a href="{{ route('register') }}">
+            <div class="visible content">Register</div>
+            <div class="hidden content">
+                <i class="right arrow icon"></i>
             </div>
-            <div class="ui animated button" tabindex="0">
-                <a href="{{ route('forgotPassword') }}">
-                <div class="visible content">Reset Password</div>
-                <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                </div>
-                </a>
+            </a>
+        </div>
+        <div class="ui animated button" tabindex="0">
+            <a href="{{ route('forgotPassword') }}">
+            <div class="visible content">Forgot Password</div>
+            <div class="hidden content">
+                <i class="right arrow icon"></i>
             </div>
+            </a>
+        </div>
+    </div>
 </div>
-
-<!-- 
-
-
-
-
-
-
-<h1>Login</h1>
-<form method="POST" action="{{ route('submitLogin') }}">
-    @csrf
-    <input type="text" name="email" placeholder="email"/><br>
-    <input type="text" name="password" placeholder="password"/><br>
-    <input type="checkbox" name="rememberMe" id="rememberMe" />
-    <label for="rememberMe">Remember Me</label><br>
-    <button type="submit">Submit</button>
-    <a href="{{ route('register') }}"><button type="button">Register</button>
-    <a href="{{ route('forgotPassword') }}"><button type="button">Forgot Password</button>
-    <a href="{{ route('inventory') }}"><button type="button">Back to Inventory</button></a>
-</form> -->
+<script>
+    $("#loginForm")
+        .form({
+            fields: {
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                             prompt : 'Please enter your email'
+                        },
+                        {
+                            type: 'email',
+                            prompt: 'Email must be valid'
+                        },
+                        {
+                            type: 'maxLength[127]',
+                            prompt: 'Email cannot be longer than 127 characters'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type   : 'empty',
+                             prompt : 'Please enter your password'
+                        }
+                    ]
+                },
+            }
+        })
+    ;
+</script>
 @endsection

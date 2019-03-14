@@ -11,24 +11,16 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
- */
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', 'InventoryController@inventoryPage')->name('inventory');
+    Route::get('/', 'InventoryController@home')->name('home');
     Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
-    
-    Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
-    Route::get('/cart', 'CartController@cartPage')->name('cart');
     
     Route::get('/forgotPassword', 'ForgotPasswordController@forgotPassword')->name('forgotPassword');
     Route::post('/forgotPassword', 'ForgotPasswordController@submitForgotPassword')->name('submitForgotPassword');
     
     Route::get('/resetPassword/{token}', 'ResetPasswordController@resetPassword')->name('resetPassword');
     Route::post('/resetPassword/{token}', 'ResetPasswordController@submitResetPassword')->name('submitResetPassword');
-
+    
     Auth::routes();
 
     Route::get('/login', 'LoginController@login')->name('login');
@@ -37,4 +29,12 @@ Route::group(['middleware' => 'web'], function () {
     
     Route::get('/register', 'RegisterController@register')->name('register');
     Route::post('/register', 'RegisterController@submitRegister')->name('submitRegister');
+    
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
+        Route::get('/cart', 'CartController@cartPage')->name('cart');
+        Route::group(['middleware' => 'is_admin'], function () {
+            Route::get('/inventory', 'InventoryController@inventory')->name('inventory');
+        });
+    });
 });

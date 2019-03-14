@@ -34,11 +34,11 @@ class InventoryController extends Controller {
      *
      * @return inventory HTML page
      */
-    public function inventoryPage()
+    public function home()
     {
         $data = array();
-        $data["title"] = "Inventory";
-        return view('inventory', compact('data'));
+        $data["title"] = "Home";
+        return view('home', compact('data'));
     }
 
     /**
@@ -70,5 +70,12 @@ class InventoryController extends Controller {
             $responseData = $validator->errors()->messages();
         }
         return response()->json(['result' => $result, 'data' => $responseData ]);
+    }
+    
+    public function inventory()
+    {
+        $data = array();
+        $data["title"] = "Inventory";
+        return view('inventory', compact('data'));
     }
 }

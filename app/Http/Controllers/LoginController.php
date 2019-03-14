@@ -42,7 +42,7 @@ class LoginController extends Controller {
     {
         $validator = \Validator::make($request->all(),
             [
-                'email' => 'required',
+                'email' => 'required|email|max:127',
                 'password' => 'required'
             ]
         );
@@ -51,7 +51,7 @@ class LoginController extends Controller {
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials, $request->input('rememberMe'))) {
                 Auth::login(User::find($request->input('email')));
-                return redirect()->route('inventory');
+                return redirect()->route('home');
             } else {
                 return redirect()->route('login');
             }
@@ -66,6 +66,6 @@ class LoginController extends Controller {
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('inventory');
+        return redirect()->route('home');
     }
 }

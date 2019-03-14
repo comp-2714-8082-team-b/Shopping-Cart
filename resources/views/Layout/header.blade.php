@@ -4,6 +4,9 @@
     </a>
     <div class="right menu">
         @if (\Auth::check())
+    @if (Auth::user()->type == "admin")
+        <a href="{{ route('inventory')}}" class="item">Admin</a>
+    @endif
         <a href="{{ route('cart') }}" class="item">
             <i class="shopping cart icon"></i>
         </a>
