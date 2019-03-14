@@ -29,22 +29,24 @@ class ResetPasswordController extends Controller {
     public function submitResetPassword(Request $request, $token) {
         $validator = \Validator::make($request->all(),
             [
-                'newPassword' => 'required|same:confirmationPassword',
-                'confirmationPassword' => 'required'
+                'password' => 'required|filled|min:6|max:20',
+                'confirmPassword' => 'required|filled|min:6|max:20|same:password',
             ]
         );
 
         if (!$validator->fails()) {
-            $password = Hash::make($request->input("newPassword"));
+            $password = Hash::make($request->input("password"));
             $user = DB::select("SELECT * FROM PasswordResets WHERE token='$token'");
             if (!empty($user)) {
                 $email = $user[0]->email;
                 DB::update("UPDATE Users SET password='$password' WHERE email='$email'");
-                DB::delete();
+                DB::delete("DELETE FROM PasswordResets WHERE email='$email'");
+                return redirect()->route('login');
+            } else {
+                return "This token has expired";
             }
-            return redirect()->route('login');
         } else {
-            return $validator->errors()->messages();
+            return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
 }
