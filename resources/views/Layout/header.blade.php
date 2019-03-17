@@ -5,7 +5,8 @@
     <div class="right menu">
         @if (\Auth::check())
     @if (Auth::user()->type == "admin")
-        <a href="{{ route('inventory')}}" class="item">Admin</a>
+        <a href="{{ route('inventory')}}" class="item">Inventory</a>
+        <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
     @endif
         <a href="{{ route('cart') }}" class="item">
             <i class="shopping cart icon"></i>

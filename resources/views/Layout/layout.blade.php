@@ -35,6 +35,8 @@ and open the template in the editor.
     </head>
     <body>
         <!-- @yield('semantic')  -->
-        @yield('content')
+        <div id="content">
+            @yield('content')
+        </div>
     </body>
 </html>

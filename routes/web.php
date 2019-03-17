@@ -35,6 +35,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/cart', 'CartController@cartPage')->name('cart');
         Route::group(['middleware' => 'is_admin'], function () {
             Route::get('/inventory', 'InventoryController@inventory')->name('inventory');
+            Route::get('/manageUsers', 'UsersController@manageUsersPage')->name('manageUsers');
+            Route::post('/updateUser', 'UsersController@updateUser')->name('updateUser');
         });
     });
 });
