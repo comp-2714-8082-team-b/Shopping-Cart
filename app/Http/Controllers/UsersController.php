@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB; // So that you can make MySQL statements
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 /**
  * Description of UsersController
  *
@@ -36,6 +37,7 @@ class UsersController extends Controller {
      */
     public function updateUser(Request $request)
     {
+        $responseData = array();
         $validator = \Validator::make($request->all(),
             [
                 'email' => 'required|filled|email|max:127|exists:Users,email',
@@ -51,15 +53,53 @@ class UsersController extends Controller {
             $firstName = $request->input("firstName");
             $lastName = $request->input("lastName");
             $type = $request->input("type");
-            DB::update("UPDATE Users SET "
+            
+            $userToBeUpdated = DB::select("SELECT * FROM Users WHERE email='$email'")[0];
+            if (($userToBeUpdated->type == Auth::user()->type) && (Auth::user()->type != "master") && ($userToBeUpdated->email != Auth::user()->email)) {
+                $result = "fail";
+                $responseData[0] = "You do not have the authority to update or delete this user's account";
+            } else {
+                DB::update("UPDATE Users SET "
                     . "userName='$username', "
                     . "firstName='$firstName', "
                     . "lastName='$lastName', "
                     . "type='$type', "
                     . "updated_at=NOW()"
                     . "WHERE email='$email'");
-            $result = "success";
-            $responseData = "Updated $firstName's information";
+                $result = "success";
+                $responseData[0] = "Updated $firstName's information";
+            }
+        } else {
+            $result = "fail";
+            $responseData = $validator->errors()->messages();
+        }
+        return response() ->json(['result' => $result, 'data' => $responseData]);
+    }
+    
+    /**
+     * 
+     * @param Request $request - data passed from user
+     * @return whether or not the function worked and what message to display
+     */
+    public function deleteUser(Request $request)
+    {
+        $validator = \Validator::make($request->all(),
+            [
+                'email' => 'required|filled|email|max:127|exists:Users,email'
+            ]
+        );
+        if (!$validator->fails()) {
+            $email = $request->input("email");
+            $userToBeDeleted = DB::select("SELECT * FROM Users WHERE email='$email'")[0];
+            if (($userToBeDeleted->type == Auth::user()->type) && (Auth::user()->type != "master") && ($userToBeDeleted->email != Auth::user()->email)) {
+                $result = "fail";
+                $responseData->message = "You do not have the authority to update or delete this user's account";
+                $responseData = json_encode($responseData);
+            } else {
+                DB::delete("DELETE FROM Users WHERE email='$email'");
+                $result = "success";
+                $responseData = "Deleted $userToBeDeleted->firstName from the database";
+            }
         } else {
             $result = "fail";
             $responseData = $validator->errors()->messages();

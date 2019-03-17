@@ -37,6 +37,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/inventory', 'InventoryController@inventory')->name('inventory');
             Route::get('/manageUsers', 'UsersController@manageUsersPage')->name('manageUsers');
             Route::post('/updateUser', 'UsersController@updateUser')->name('updateUser');
+            Route::post('/deleteUser', 'UsersController@deleteUser')->name('deleteUser');
         });
     });
 });
