@@ -5,7 +5,7 @@
     <div class="right menu">
         @if (\Auth::check())
     @if ((Auth::user()->type == "admin") || (Auth::user()->type == "master"))
-        <a href="{{ route('inventory')}}" class="item">Inventory</a>
+        <a href="{{ route('itemForm')}}" class="item">Create Item</a>
         <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
     @endif
         <a href="{{ route('cart') }}" class="item">
