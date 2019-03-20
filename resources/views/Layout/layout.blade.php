@@ -29,6 +29,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
     </head>
     <body>
         <!-- @yield('semantic')  -->
