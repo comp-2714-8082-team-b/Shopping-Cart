@@ -245,9 +245,14 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
-            
+            $modelNumber = $request->input("modelNumber");
+            $pictures = DB::select("SELECT imgUrl FROM Picture WHERE modelNumber='$modelNumber'");
+            foreach ($pictures as $picture) {
+                Storage::disk('public')->delete($picture->imgUrl);
+            }
+            DB::delete("DELETE FROM Item WHERE modelNumber='$modelNumber'");
         } else {
-            
+            return $validator->errors()->messages();
         }
     }
 }

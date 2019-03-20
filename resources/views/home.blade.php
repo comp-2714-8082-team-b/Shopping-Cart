@@ -79,29 +79,20 @@
         
         $("body").on('click', '.deleteItem', function () {
             var modelNumber = $(this).val();
-            var quantityID = modelNumber + "Quantity";
-            var requestedQuantity = $("#" + quantityID).val();
             $.ajax({
-                url: "{{ route('addToCart') }}",
+                url: "{{ route('deleteItem') }}",
                 type: "POST",
                 data: {
-                    modelNumber: modelNumber,
-                    requestedQuantity: requestedQuantity
+                    modelNumber: modelNumber
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function (response) {
-                    if (response["data"] === "fail") {
-                        alert("Failed to add item to cart");
-                    } else {
-                        alert(response["data"]);
-                    }
-                },
-                error: function () {
-                    alert("Failed to add item");
+                success: function () {
+                    alert("Deleted Item");
                 }
             });
+            $(this).closest(".item").remove();
         });
 
         function sendRequest(index) {

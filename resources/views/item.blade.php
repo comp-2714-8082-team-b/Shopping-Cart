@@ -36,8 +36,7 @@ Get the item's column name with the following syntax:
         @if (\Auth::check())
             @if (\Auth::user()->type != "user")
             <div class="footer">
-
-                <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button deleteButton">
+                <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button deleteItem">
                     <i class="x icon"></i> Delete
                 </button>
                 <a href="{{ route('itemForm', ['modelNumber' => $item->modelNumber]) }}">
