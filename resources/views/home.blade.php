@@ -26,8 +26,8 @@
                         <br>
                         @endforeach
                     </div>
-                    <h2>Price Range</h2>
                     <div class="item">
+                        <h2>Price Range</h2>
                         <div class="ui input">
                             <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
                         </div>
@@ -51,6 +51,33 @@
 <script>
     $(document).ready(function () {
         $("body").on('click', '.addToCartButton', function () {
+            var modelNumber = $(this).val();
+            var quantityID = modelNumber + "Quantity";
+            var requestedQuantity = $("#" + quantityID).val();
+            $.ajax({
+                url: "{{ route('addToCart') }}",
+                type: "POST",
+                data: {
+                    modelNumber: modelNumber,
+                    requestedQuantity: requestedQuantity
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    if (response["data"] === "fail") {
+                        alert("Failed to add item to cart");
+                    } else {
+                        alert(response["data"]);
+                    }
+                },
+                error: function () {
+                    alert("Failed to add item");
+                }
+            });
+        });
+        
+        $("body").on('click', '.deleteItem', function () {
             var modelNumber = $(this).val();
             var quantityID = modelNumber + "Quantity";
             var requestedQuantity = $("#" + quantityID).val();
@@ -103,5 +130,67 @@
         sendRequest(0);
     });
 
+    var transitionSpeed = 300;
+    var transitionDelay = 2000;
+    $(".deleteItem")
+    function saveOrDeleteUser(saveOrDelete, formNumber)
+    {
+        var url = "";
+        if (saveOrDelete === 0)
+        {
+            url = "{{ route('updateUser') }}";
+        }
+        else
+        {
+            url = "{{ route('deleteUser') }}";
+        }
+        alert("X");
+        return;
+        $.ajax({
+            type: "POST",
+            url: url,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            processData: false,
+            contentType: false,
+            data: new FormData($('.itemForm')[formNumber]),
+            success: function(response) {
+                if (response["result"] == "success")
+                {
+                    $("#ajaxResultHeader").html(response["data"]);
+                    $("#ajaxResultMessage").html("");
+                    $("#ajaxResultBox").removeClass("red");
+                    $("#ajaxResultBox").addClass("green");
+                    $("#ajaxResultBox").slideDown(transitionSpeed).delay(transitionDelay).slideUp(transitionSpeed);
+                    if (saveOrDelete == 1)
+                    {
+                        $('.itemForm')[formNumber].remove();
+                    }
+                }
+                else
+                {
+                    $("#ajaxResultHeader").html("Request Failed");
+                    $("#ajaxResultMessage").html("<ul>");
+                    var arr = $.parseJSON(JSON.stringify(response["data"]));
+                    $.each(arr, function(index, value) {
+                        $("#ajaxResultMessage").append("<li>" + value + "</li>");
+                    });
+                    $("#ajaxResultMessage").append("</ul>");
+                    $("#ajaxResultBox").removeClass("green");
+                    $("#ajaxResultBox").addClass("red");
+                    $("#ajaxResultBox").slideDown(transitionSpeed);
+                }
+            }
+        });
+    }
+    
+    
+    $('.message .close').on('click', function() {
+        $(this)
+            .closest('#ajaxResultBox')
+            .slideUp(transitionSpeed)
+        ;
+     });
 </script>
 @endsection

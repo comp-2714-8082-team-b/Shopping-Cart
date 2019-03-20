@@ -44,6 +44,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('/createItem', 'InventoryController@createItem')->name('createItem');
             Route::post('/updateItem', 'InventoryController@updateItem')->name('updateItem');
             Route::post('/deleteItem', 'InventoryController@deleteItem')->name('deleteItem');
+            Route::post('/deleteFile', 'InventoryController@deleteFile')->name('deleteFile');
         });
     });
 });

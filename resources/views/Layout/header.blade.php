@@ -1,5 +1,5 @@
 <div class="ui top attached menu">
-    <a href="./" class="item">
+    <a href="{{ route('home') }}" class="item">
         {{ config('app.name', 'Laravel') }}
     </a>
     <div class="right menu">

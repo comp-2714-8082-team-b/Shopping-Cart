@@ -7,7 +7,7 @@ Get the item's column name with the following syntax:
         <div class="ui placeholder">
             
             @if ($item->pictures[0])
-                <div class="square image" style="background-image: url('{{ asset('storage/app/' . $item->pictures[0]) }}');background-size: cover;"></div>
+                <div class="square image" style="background-image: url('{{ asset('storage/app/public/' . $item->pictures[0]) }}');background-size: cover;"></div>
             @else
                 <div class="square image" style="background-image: url('{{ asset('public/img/placeholder.png') }}');background-size: cover;"></div>
             @endif
@@ -33,18 +33,20 @@ Get the item's column name with the following syntax:
                 <div class="ui label">{{ $category }}</div>
             @endforeach
         </div>
-        @if (\Auth::user()->type != "user")
-        <div class="footer">
-            
-            <button type="button" value="Delete" class="ui right floated icon red button">
-                <i class="x icon"></i> Delete
-            </button>
-            <a href="{{ route('itemForm', ['modelNumber' => $item->modelNumber]) }}">
-                <button type="button" value="Edit" class="ui right floated icon blue button">
-                    <i class="edit icon"></i> Edit
+        @if (\Auth::check())
+            @if (\Auth::user()->type != "user")
+            <div class="footer">
+
+                <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button deleteButton">
+                    <i class="x icon"></i> Delete
                 </button>
-            </a>
-        </div>
+                <a href="{{ route('itemForm', ['modelNumber' => $item->modelNumber]) }}">
+                    <button type="button" value="Edit" class="ui right floated icon blue button">
+                        <i class="edit icon"></i> Edit
+                    </button>
+                </a>
+            </div>
+            @endif
         @endif
     </div>
 </div>

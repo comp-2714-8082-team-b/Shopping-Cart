@@ -2,7 +2,7 @@
 @include('Layout/header')
 @section('content')
 <div class="ui centered form">
-    <form class="ui large form" action="{{ route('createItem') }}" method="POST" enctype="multipart/form-data">
+    <form class="ui large form" action="{{ $url }}" method="POST" enctype="multipart/form-data">
         @csrf()
         <div class="ui error message"></div>
         @if ($errors->any())
@@ -14,6 +14,7 @@
             <div class="five wide field">
                 <label>Model Number</label>
                 <input type="text" placeholder="Model Number" name="modelNumber" value="{{ old('modelNumber', $item->modelNumber)  }}">
+                <input type="hidden" name="formerModelNumber" value="{{ $item->modelNumber }}">
             </div>
             <div class="five wide field">
                 <label>Item Name</label>
@@ -54,7 +55,7 @@
             <div class="six wide field">
                 <label>Categories</label>
                 <div class="ui fluid multiple search selection dropdown">
-                    <input name="categories" type="hidden">
+                    <input name="categories" type="hidden" value="{{ old('categories', $item->categories) }}">
                     <i class="dropdown icon"></i>
                     <div class="default text">Categories</div>
                     <div class="menu">
@@ -77,7 +78,7 @@
                 <button class="ui primary button" type="button" id="addImage">Add</button>
             </div>
         </div>
-        <div class="ui ten column grid">
+        <div class="fields ui seven column grid">
             <div class="row" id="imagesSection">
                 <div id="clone" style="display:none;">
                     <div class="column">
@@ -91,6 +92,18 @@
                         </button>
                     </div>
                 </div>
+                @forelse ($item->pictures as $picture)
+                <div class="column">
+                    <div class="ui placeholder">
+                        <div class="square image" style="background-image: url('{{ asset('storage/app/public/' . $picture) }}');background-size: cover;">
+                        </div>
+                    </div>
+                    <button class="ui red button icon deleteButton" type="button" value="{{ $picture }}">
+                        <i class="close icon"></i> Delete
+                    </button>
+                </div>
+                @empty
+                @endforelse
             </div>
         </div>
         <div class="fields">
@@ -155,6 +168,23 @@
       });
 
       $("body").on("click",".removeButton",function(){ 
+          $(this).closest(".column").remove();
+      });
+
+      $("body").on("click",".deleteButton",function(){
+          $.ajax({
+                url: "{{ route('deleteFile') }}",
+                type: "POST",
+                data: {
+                    filePath: $(this).val(),
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function () {
+                    //alert("Deleted File");
+                }
+            });
           $(this).closest(".column").remove();
       });
 
