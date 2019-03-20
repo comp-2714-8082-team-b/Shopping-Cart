@@ -1,14 +1,52 @@
 @extends('Layout/layout')
 @include('Layout/header')
 @section('content')
-<h1>Inventory Page</h1>
+<h1>Manage Users Page</h1>
 <div class="ui message hidden" id="ajaxResultBox">
     <i class="close icon"></i>
     <div class="header" id="ajaxResultHeader"></div>
     <p id="ajaxResultMessage"></p>
 </div>
-<div class="ui divided items">
-@include('item', ['items' => $items ])
+<div class="ui six column grid">
+@for ($i = 0; $i < count($users); $i++)
+    <form class="ui large form row userForm">
+        <div class="column ui input middle aligned">
+            <input type="text" name="email" value="{{ $users[$i]->email }}" readonly="readonly">
+        </div>
+        <div class="column ui input middle aligned">
+            <input type="text" name="userName" value="{{ $users[$i]->userName }}">
+        </div>
+        <div class="column ui input middle aligned">
+            <input type="text" name="firstName" value="{{ $users[$i]->firstName }}">
+        </div>
+        <div class="column ui input middle aligned">
+            <input type="text" name="lastName" value="{{ $users[$i]->lastName }}">
+        </div>
+        <div class="column middle aligned">
+            <select name="type" class="ui dropdown">
+                @if ($users[$i]->type == "user")
+                    <option value="user" selected>User</option>
+                    <option value="admin">Admin</option>
+                @elseif ($users[$i]->type == "admin")
+                    <option value="user">User</option>
+                    <option value="admin" selected>Admin</option>
+                @else
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="master" selected>Master</option>
+                @endif
+            </select>
+        </div>
+        <div class="column middle aligned">
+            <button type="button" value="Update" class="ui icon blue button" onclick="saveOrDeleteUser(0, {{ $i }})">
+                <i class="save icon"></i> Save
+            </button>
+            <button type="button" value="Delete" class="ui icon red button" onclick="saveOrDeleteUser(1, {{ $i }})">
+                <i class="x icon"></i> Delete
+            </button>
+        </div>
+    </form>
+@endfor
 </div>
 <script>
     var transitionSpeed = 300;
@@ -32,7 +70,7 @@
             },
             processData: false,
             contentType: false,
-            data: new FormData($('.itemForm')[formNumber]),
+            data: new FormData($('.userForm')[formNumber]),
             success: function(response) {
                 if (response["result"] == "success")
                 {
@@ -43,7 +81,7 @@
                     $("#ajaxResultBox").slideDown(transitionSpeed).delay(transitionDelay).slideUp(transitionSpeed);
                     if (saveOrDelete == 1)
                     {
-                        $('.itemForm')[formNumber].remove();
+                        $('.userForm')[formNumber].remove();
                     }
                 }
                 else
