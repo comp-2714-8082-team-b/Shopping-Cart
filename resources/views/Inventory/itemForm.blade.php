@@ -35,7 +35,7 @@
                 <label>Item Price</label>
                 <div class="ui labeled input">
                     <label for="itemPrice" class="ui label">$</label>
-                    <input type="number" placeholder="0.00" id="itemPrice" name="itemPrice" value="{{ old('itemPrice', $item->itemPrice) }}">
+                    <input type="number" step="0.01" placeholder="0.00" id="itemPrice" name="itemPrice" value="{{ old('itemPrice', $item->itemPrice) }}">
                 </div>
             </div>
             <div class="three wide field">

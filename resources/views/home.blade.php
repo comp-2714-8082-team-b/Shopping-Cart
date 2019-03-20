@@ -89,13 +89,18 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function () {
-                    alert("Deleted Item");
+                    //alert("Deleted Item");
                 }
             });
             $(this).closest(".item").remove();
         });
+        
+        $("form :input").change(function() {
+            sendRequest(0);
+        });
 
         function sendRequest(index) {
+            $("#itemsSection").html("");
             $.ajax({
                 url: "{{ route('getItems') }}/" + index,
                 type: "POST",
@@ -135,8 +140,6 @@
         {
             url = "{{ route('deleteUser') }}";
         }
-        alert("X");
-        return;
         $.ajax({
             type: "POST",
             url: url,

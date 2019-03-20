@@ -142,25 +142,27 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
-            $modelNumber = $request->input("modelNumber");
-            $itemName = $request->input("itemName");
-            $brandName = $request->input("brandName");
-            $itemPrice = $request->input("itemPrice");
+            $pdo = DB::connection()->getPdo();
+            $modelNumber = $pdo->quote($request->input("modelNumber"));
+            $itemName = $pdo->quote($request->input("itemName"));
+            $brandName = $pdo->quote($request->input("brandName"));
+            $itemPrice = $pdo->quote($request->input("itemPrice"));
             $salePrice = (empty($request->input("salePrice"))) ? "NULL" : "'" . $request->input("salePrice") . "'";
-            $stockQuantity = $request->input("stockQuantity");
-            $description = $request->input("description");
+            $stockQuantity = $pdo->quote($request->input("stockQuantity"));
+            $description = $pdo->quote($request->input("description"));
             $categories = explode(",", $request->input("categories"));
-            DB::insert("INSERT INTO Item (modelNumber, itemName, brandName, itemPrice, salePrice, stockQuantity, description) VALUES ('$modelNumber', '$itemName', '$brandName', '$itemPrice', $salePrice, '$stockQuantity', '$description')");
+            $sql = "INSERT INTO Item (modelNumber, itemName, brandName, itemPrice, salePrice, stockQuantity, description) VALUES ($modelNumber, $itemName, $brandName, $itemPrice, $salePrice, $stockQuantity, $description)";
+            DB::insert($sql);
             
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
                     $filename = $file->store(null, 'public');
-                    DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', '$modelNumber')");
+                    DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', $modelNumber)");
                 }
             }
             foreach ($categories as $category) {
                 if (!empty($category)) {
-                    DB::insert("INSERT INTO Category (categoryName, modelNumber) VALUES ('$category', '$modelNumber')");
+                    DB::insert("INSERT INTO Category (categoryName, modelNumber) VALUES ('$category', $modelNumber)");
                 }
             }
             return redirect()->route('home');
@@ -190,27 +192,28 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
-            $modelNumber = $request->input("modelNumber");
-            $formerModelNumber = $request->input("formerModelNumber");
-            $itemName = $request->input("itemName");
-            $brandName = $request->input("brandName");
-            $itemPrice = $request->input("itemPrice");
+            $pdo = DB::connection()->getPdo();
+            $modelNumber = $pdo->quote($request->input("modelNumber"));
+            $formerModelNumber = $pdo->quote($request->input("formerModelNumber"));
+            $itemName = $pdo->quote($request->input("itemName"));
+            $brandName = $pdo->quote($request->input("brandName"));
+            $itemPrice = $pdo->quote($request->input("itemPrice"));
             $salePrice = (empty($request->input("salePrice"))) ? "NULL" : "'" . $request->input("salePrice") . "'";
-            $stockQuantity = $request->input("stockQuantity");
-            $description = $request->input("description");
+            $stockQuantity = $pdo->quote($request->input("stockQuantity"));
+            $description = $pdo->quote($request->input("description"));
             $categories = explode(",", $request->input("categories"));
-            DB::update("UPDATE Item SET modelNumber='$modelNumber', itemName='$itemName', brandName='$brandName', itemPrice='$itemPrice', salePrice=$salePrice, stockQuantity='$stockQuantity', description='$description' WHERE modelNumber='$formerModelNumber'");
+            DB::update("UPDATE Item SET modelNumber=$modelNumber, itemName=$itemName, brandName=$brandName, itemPrice=$itemPrice, salePrice=$salePrice, stockQuantity=$stockQuantity, description=$description WHERE modelNumber=$formerModelNumber");
             $modelNumber = ($modelNumber == $formerModelNumber) ? $formerModelNumber : $modelNumber;
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
                     $filename = $file->store(null, 'public');
-                    DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', '$modelNumber')");
+                    DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', $modelNumber)");
                 }
             }
-            DB::delete("DELETE FROM Category WHERE modelNumber='$modelNumber'");
+            DB::delete("DELETE FROM Category WHERE modelNumber=$modelNumber");
             foreach ($categories as $category) {
                 if (!empty($category)) {
-                    DB::insert("INSERT INTO Category (categoryName, modelNumber) VALUES ('$category', '$modelNumber')");
+                    DB::insert("INSERT INTO Category (categoryName, modelNumber) VALUES ('$category', $modelNumber)");
                 }
             }
             return redirect()->route('home');
@@ -245,12 +248,13 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
-            $modelNumber = $request->input("modelNumber");
-            $pictures = DB::select("SELECT imgUrl FROM Picture WHERE modelNumber='$modelNumber'");
+            $pdo = DB::connection()->getPdo();
+            $modelNumber = $pdo->quote($request->input("modelNumber"));
+            $pictures = DB::select("SELECT imgUrl FROM Picture WHERE modelNumber=$modelNumber");
             foreach ($pictures as $picture) {
                 Storage::disk('public')->delete($picture->imgUrl);
             }
-            DB::delete("DELETE FROM Item WHERE modelNumber='$modelNumber'");
+            DB::delete("DELETE FROM Item WHERE modelNumber=$modelNumber");
         } else {
             return $validator->errors()->messages();
         }

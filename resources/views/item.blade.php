@@ -14,8 +14,9 @@ Get the item's column name with the following syntax:
         </div>
     </div>
     <div class="content">
-        <a class="header">{{ $item->modelNumber . ": " . $item->itemName }}</a>
+        <a class="header">{{ $item->itemName }}</a>
         <div class="meta">
+            <span class="modelNumber">{{ $item->modelNumber }}</span>
             @if (is_null($item->salePrice))
                 <span class="price">Price: ${{ $item->itemPrice }}</span>
             @else
@@ -26,7 +27,7 @@ Get the item's column name with the following syntax:
             <span class="stockQuantity">In Stock: {{ $item->stockQuantity }}</span>
         </div>
         <div class="description">
-            <p>{{ $item->description }}</p>
+            <p>{!! nl2br($item->description) !!}</p>
         </div>
         <div class="extra">
             @foreach ($item->categories as $category)
