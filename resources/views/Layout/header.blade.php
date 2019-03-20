@@ -1,11 +1,12 @@
 <div class="ui top attached menu">
-    <a href="./" class="item">
+    <a href="{{ route('home') }}" class="item">
         {{ config('app.name', 'Laravel') }}
     </a>
     <div class="right menu">
         @if (\Auth::check())
-    @if (Auth::user()->type == "admin")
-        <a href="{{ route('inventory')}}" class="item">Admin</a>
+    @if ((Auth::user()->type == "admin") || (Auth::user()->type == "master"))
+        <a href="{{ route('itemForm')}}" class="item">Create Item</a>
+        <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
     @endif
         <a href="{{ route('cart') }}" class="item">
             <i class="shopping cart icon"></i>

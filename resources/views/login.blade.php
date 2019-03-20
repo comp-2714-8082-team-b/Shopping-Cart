@@ -28,7 +28,7 @@
                 </div>
         <div class="ui message">
             <div class="ui checkbox">
-                <input type="checkbox" name="example">
+                <input type="checkbox" name="rememberMe">
                 <label>Remember Me</label>
             </div>
         </div>

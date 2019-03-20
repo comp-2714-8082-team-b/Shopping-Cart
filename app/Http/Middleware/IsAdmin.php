@@ -19,7 +19,7 @@ class IsAdmin
         
         if (!is_null($user))
         {
-            if ($user->type == "admin")
+            if (($user->type == "admin") || ($user->type == "master"))
             {
                 $request->session()->reflash();
                 return $next($request);
