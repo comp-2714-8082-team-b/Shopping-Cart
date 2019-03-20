@@ -235,9 +235,6 @@
 <!-- </body>
 </html> -->
 <h1>Inventory Page</h1>
-<<<<<<< HEAD
-@endsection
-=======
 <div class="ui message hidden" id="ajaxResultBox">
     <i class="close icon"></i>
     <div class="header" id="ajaxResultHeader"></div>
@@ -308,4 +305,3 @@
      });
 </script>
 @endsection
->>>>>>> e740a1bdf60e799afdc19211528359689ad21526
