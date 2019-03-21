@@ -66,7 +66,18 @@ class InventoryController extends Controller {
             $priceMax = ($request->input("priceMax") !== null) ? $request->input("priceMax") : 9999.99;
             $brands = InventoryController::arrayToMySQLFriendly(($request->input("brand", [''])));
             $categories = implode(",", $request->input("category", ['']));
-            $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber LEFT JOIN Picture p ON c.modelNumber = p.modelNumber WHERE FIND_IN_SET(c.categoryName, ('$categories')) AND (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands)) GROUP BY i.modelNumber LIMIT $index,10";
+            $sortBy = ($request->input("sortBy"));
+
+            $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice,
+             i.salePrice, i.brandName, i.stockQuantity, i.description,
+              GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories,
+               GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') 
+               as pictures FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber 
+               LEFT JOIN Picture p ON c.modelNumber = p.modelNumber 
+               WHERE FIND_IN_SET(c.categoryName, ('$categories')) 
+               AND (itemPrice BETWEEN $priceMin AND $priceMax) 
+               AND (brandName IN ($brands)) GROUP BY i.modelNumber ORDER BY $sortBy LIMIT $index,10";
+
             //return $sql;
             $items = DB::select($sql);
             for ($i = 0; $i < count($items); $i++) {
