@@ -26,7 +26,7 @@ Get the item's column name with the following syntax:
             <span class="brandName">Brand: {{ $item->brandName }}</span>
             <span class="stockQuantity">In Stock: {{ $item->stockQuantity }}</span>
         </div>
-        <div class="description">
+        <div class="description" style='overflow:hidden;'>
             <p>{!! nl2br($item->description) !!}</p>
         </div>
         <div class="extra">
