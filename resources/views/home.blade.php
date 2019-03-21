@@ -1,7 +1,7 @@
 @extends('Layout/layout')
 @include('Layout/header')
 @section('content')
-<div class="ui fourteen column centered grid">
+<div class="ui stackable fourteen column centered grid">
    <div class="row">
         <div class="three wide column">
             <div class="ui vertical menu">
@@ -28,16 +28,45 @@
                     </div>
                     <div class="item">
                         <h2>Price Range</h2>
-                        <div class="ui input">
-                            <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
+                        <div class="ui form">
+                            <div class="two wide fields">
+                            <div class="field">
+                                <div class="ui input">
+                                    <input max="9999" type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui input">
+                                    <input max="9999" type="number" placeholder="$ Max..." id='priceMax' name='priceMax' />
+                                </div>
+                            </div>
                         </div>
-                        <div class="ui input">
-                            <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax' />
+                            <button type="button" class="ui primary button">
+                                Save
+                            </button>
+                        
+                        
                         </div>
-                        <button type="button" class="ui primary button">
-                            Save
-                        </button>
                     </div>
+                    <div class="item">
+                    <h2>Sort By:</h2>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name = "sortBy" value="itemPrice ASC" id='priceLowToHigh' checked="checked">
+                        <label for="priceLowToHigh">Price(Low to High)</label>
+                    </div>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="sortBy" value="itemPrice DESC" id='priceHighToLow'>
+                        <label for="priceHighToLow">Price(High to Low)</label>
+                    </div>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="sortBy" value="itemName ASC" id='alphabeticalAtoZ'>
+                        <label for="alphabeticalAtoZ">Alphabetical(A to Z)</label>
+                    </div>
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="sortBy" value="itemName DESC" id='alphabeticalZtoA'>
+                        <label for="alphabeticalZtoA">Alphabetical(Z to A)</label>
+                    </div>
+                </div>
                 </form>
             </div>
         </div>
