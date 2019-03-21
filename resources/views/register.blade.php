@@ -1,4 +1,4 @@
-@extends('Layout/layout')
+@extends('Layout/layout', ['showHeader' => false, 'title' => 'Register'])
 @section('content')
 @include('Layout/singleFormStyle')
 <link rel="stylesheet" type="text/css" href="{{ asset('public/css/login_background.css') }}">

@@ -1,5 +1,4 @@
-@extends('Layout/layout')
-@include('Layout/header')
+@extends('Layout/layout', ['showHeader' => true, 'title' => 'Manage Users'])
 @section('content')
 <h1>Manage Users Page</h1>
 <div class="ui message hidden" id="ajaxResultBox">

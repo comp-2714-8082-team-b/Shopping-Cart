@@ -39,11 +39,9 @@ class InventoryController extends Controller {
      */
     public function home()
     {
-        $data = array();
-        $data["title"] = "Home";
         $brandNames = DB::select("SELECT DISTINCT brandName FROM Item");
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
-        return view('home', compact('data', 'brandNames', 'categories'));
+        return view('home', compact('brandNames', 'categories'));
     }
 
     /**
@@ -95,20 +93,15 @@ class InventoryController extends Controller {
 
     public function inventory()
     {
-        $data = array();
-        $data["title"] = "Inventory";
         $items = DB::select("SELECT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(c.categoryName SEPARATOR ', ') as categories FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber GROUP BY i.modelNumber");
         for ($i = 0; $i < count($items); $i++) {
             $items[$i]->categories = explode(', ', $items[$i]->categories);
         }
-        return view('inventory', compact('data', 'items', 'categories'));
+        return view('inventory', compact('items', 'categories'));
     }
 
     public function itemForm($modelNumber = null)
     {
-        $data = array();
-        $data['title'] = "Item Form";
-
         if (!is_null($modelNumber)) {
             $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
             $url = route("updateItem");
@@ -128,7 +121,7 @@ class InventoryController extends Controller {
         }
         $brandNames = DB::select("SELECT DISTINCT brandName FROM Item");
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
-        return view('Inventory/itemForm', compact('data', 'item', 'brandNames', 'categories', 'url'));
+        return view('Inventory/itemForm', compact('item', 'brandNames', 'categories', 'url'));
     }
 
     /**
@@ -272,10 +265,8 @@ class InventoryController extends Controller {
     }
 
     public function getDescription($modelNumber) {
-      $data = array();
-      $data["title"] = "item Description";
       $item = DB::select("SELECT * FROM Item WHERE modelNumber = '$modelNumber'")[0];
-      return view('inventory/itemDescription', compact('data','item'));
+      return view('inventory/itemDescription', compact('item'));
     }
 
 

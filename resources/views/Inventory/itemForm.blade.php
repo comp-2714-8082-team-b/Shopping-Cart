@@ -1,5 +1,4 @@
-@extends('Layout/layout')
-@include('Layout/header')
+@extends('Layout/layout', ['showHeader' => true, 'title' => 'Item Form'])
 @section('content')
 <div class="ui centered form">
     <form class="ui large form" action="{{ $url }}" method="POST" enctype="multipart/form-data">

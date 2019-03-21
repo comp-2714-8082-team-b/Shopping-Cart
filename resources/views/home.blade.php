@@ -1,5 +1,4 @@
-@extends('Layout/layout')
-@include('Layout/header')
+@extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
 <div class="ui stackable fourteen column centered grid">
    <div class="row">

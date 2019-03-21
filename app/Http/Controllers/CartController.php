@@ -27,12 +27,10 @@ class CartController extends Controller {
     public function cartPage()
     {
         $user = Auth::user();
-        $data = array();
-        $data["title"] = "Cart";
         $itemsInCart = DB::select("SELECT * FROM Cart WHERE email='$user->email'")[0];
         $itemsInCart = json_decode(json_encode($itemsInCart), true);
 
-        return view('cart', compact('data', 'itemsInCart'));
+        return view('cart', compact('itemsInCart'));
     }
 
     /**
