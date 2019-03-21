@@ -3,12 +3,7 @@
 @include('Layout/singleFormStyle')
 <div class="ui middle aligned center aligned grid">
     <div class="column">
-        <h2 class="ui teal image header">
-            <div class="content">
-                Login to {{ config('app.name', 'Laravel') }}
-            </div>
-            <span id="typed"></span>
-        </h2>
+        <p id="typewriter"></p>
         <form class="ui large form" method="POST" action="{{ route('submitLogin') }}" id="loginForm">
             @csrf
             <div class="ui stacked segment">
@@ -106,5 +101,20 @@
             }
         })
     ;
+
+    var i = 0;
+    var txt = 'Login to {{ config('app.name', 'Laravel') }}'; /* The text */
+    var speed = 50; /* The speed/duration of the effect in milliseconds */
+    window.onload = function(){
+    setTimeout(typeWriter(), 
+        speed);
+};
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("typewriter").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
 </script>
 @endsection
