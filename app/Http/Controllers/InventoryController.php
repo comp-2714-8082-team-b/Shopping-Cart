@@ -69,7 +69,7 @@ class InventoryController extends Controller {
             $sortBy = ($request->input("sortBy"));
 
             $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice,
-             i.salePrice, i.brandName, i.stockQuantity, i.description,
+             i.salePrice, i.brandName, i.stockQuantity, i.description as description,
               GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories,
                GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') 
                as pictures FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber 
