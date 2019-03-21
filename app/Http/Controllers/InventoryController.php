@@ -92,7 +92,7 @@ class InventoryController extends Controller {
         }
         return response()->json(['result' => $result, 'data' => $responseData ]);
     }
-    
+
     public function inventory()
     {
         $data = array();
@@ -103,12 +103,12 @@ class InventoryController extends Controller {
         }
         return view('inventory', compact('data', 'items', 'categories'));
     }
-    
+
     public function itemForm($modelNumber = null)
     {
         $data = array();
         $data['title'] = "Item Form";
-        
+
         if (!is_null($modelNumber)) {
             $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
             $url = route("updateItem");
@@ -130,9 +130,9 @@ class InventoryController extends Controller {
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
         return view('Inventory/itemForm', compact('data', 'item', 'brandNames', 'categories', 'url'));
     }
-    
+
     /**
-     * 
+     *
      * @param Request $request - inputs passed from user
      * @return route back to item form if the submission was invalid or back to
      *          home page
@@ -164,7 +164,7 @@ class InventoryController extends Controller {
             $categories = explode(",", $request->input("categories"));
             $sql = "INSERT INTO Item (modelNumber, itemName, brandName, itemPrice, salePrice, stockQuantity, description) VALUES ($modelNumber, $itemName, $brandName, $itemPrice, $salePrice, $stockQuantity, $description)";
             DB::insert($sql);
-            
+
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
                     $filename = $file->store(null, 'public');
@@ -181,9 +181,9 @@ class InventoryController extends Controller {
             return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param Request $request - inputs passed from user
      */
     public function updateItem(Request $request)
@@ -232,7 +232,7 @@ class InventoryController extends Controller {
             return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
-    
+
     /**
      * @param Request $request - filePath
      */
@@ -250,7 +250,7 @@ class InventoryController extends Controller {
             }
         }
     }
-    
+
     public function deleteItem(Request $request)
     {
         $validator = Validator::make($request->all(),
@@ -270,4 +270,13 @@ class InventoryController extends Controller {
             return $validator->errors()->messages();
         }
     }
+
+    public function getDescription($modelNumber) {
+      $data = array();
+      $data["title"] = "item Description";
+      $item = DB::select("SELECT * FROM Item WHERE modelNumber = '$modelNumber'")[0];
+      return view('inventory/itemDescription', compact('data','item'));
+    }
+
+
 }

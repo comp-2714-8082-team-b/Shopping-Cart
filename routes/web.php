@@ -14,32 +14,35 @@
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'InventoryController@home')->name('home');
     Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
-    
+
     Route::get('/forgotPassword', 'ForgotPasswordController@forgotPassword')->name('forgotPassword');
     Route::post('/forgotPassword', 'ForgotPasswordController@submitForgotPassword')->name('submitForgotPassword');
-    
+
     Route::get('/resetPassword/{token}', 'ResetPasswordController@resetPassword')->name('resetPassword');
     Route::post('/resetPassword/{token}', 'ResetPasswordController@submitResetPassword')->name('submitResetPassword');
-    
+
     Auth::routes();
 
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/login', 'LoginController@submitLogin')->name('submitLogin');
     Route::get('/logout', 'LoginController@logout')->name('logout');
-    
+
     Route::get('/register', 'RegisterController@register')->name('register');
     Route::post('/register', 'RegisterController@submitRegister')->name('submitRegister');
+
+    Route::get('/item/{modelNumber}', 'InventoryController@getDescription')->name('getDescription');
     
+
     Route::group(['middleware' => 'auth'], function () {
         Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
         Route::get('/cart', 'CartController@cartPage')->name('cart');
         Route::group(['middleware' => 'is_admin'], function () {
             Route::get('/inventory', 'InventoryController@inventory')->name('inventory');
-            
+
             Route::get('/manageUsers', 'UsersController@manageUsersPage')->name('manageUsers');
             Route::post('/updateUser', 'UsersController@updateUser')->name('updateUser');
             Route::post('/deleteUser', 'UsersController@deleteUser')->name('deleteUser');
-            
+
             Route::get('/itemForm/{modelNumber?}', 'InventoryController@itemForm')->name('itemForm');
             Route::post('/createItem', 'InventoryController@createItem')->name('createItem');
             Route::post('/updateItem', 'InventoryController@updateItem')->name('updateItem');
