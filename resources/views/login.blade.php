@@ -5,8 +5,9 @@
     <div class="column">
         <h2 class="ui teal image header">
             <div class="content">
-                Log-in to your account 
+                Login to {{ config('app.name', 'Laravel') }}
             </div>
+            <span id="typed"></span>
         </h2>
         <form class="ui large form" method="POST" action="{{ route('submitLogin') }}" id="loginForm">
             @csrf
