@@ -1,13 +1,9 @@
-@extends('Layout/layout')
+@extends('Layout/layout', ['showHeader' => false, 'title' => 'Register'])
 @section('content')
 @include('Layout/singleFormStyle')
-<div class="ui middle aligned center aligned grid">
-    <div class="column">
-        <h2 class="ui teal image header">
-            <div class="content">
-                Register
-            </div>
-        </h2>
+<div class="ui middle aligned center aligned grid style fade-in">
+    <div class="column">             
+    <h1>Register</h1>
         <form class="ui large form" method="POST" action="{{ route('submitRegister') }}" id="registerForm">
             @csrf
             <div class="ui stacked segment">
@@ -54,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="ui fluid large teal submit button">
+                <div class="ui fluid large submit red button">
                     <button type="submit">
                         Submit
                     </button>
@@ -68,7 +64,7 @@
             @endif
         </form>
         <a href="{{ route('login') }}" >
-            <div class="ui button">
+            <div class="ui large button">
                 Back
             </div>
         </a>
@@ -157,5 +153,6 @@
             },
         }
     });
+    
 </script>
 @endsection

@@ -37,13 +37,12 @@ class InventoryController extends Controller {
      *
      * @return inventory HTML page
      */
-    public function home()
+    public function home(Request $request)
     {
-        $data = array();
-        $data["title"] = "Home";
+        $searchKey = $request->input('searchKey', '');
         $brandNames = DB::select("SELECT DISTINCT brandName FROM Item");
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
-        return view('home', compact('data', 'brandNames', 'categories'));
+        return view('home', compact('brandNames', 'categories', 'searchKey'));
     }
 
     /**
@@ -62,11 +61,25 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
+            $pdo = DB::connection()->getPdo();
             $priceMin = ($request->input("priceMin") !== null) ? $request->input("priceMin") : 0;
             $priceMax = ($request->input("priceMax") !== null) ? $request->input("priceMax") : 9999.99;
             $brands = InventoryController::arrayToMySQLFriendly(($request->input("brand", [''])));
             $categories = implode(",", $request->input("category", ['']));
-            $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber LEFT JOIN Picture p ON c.modelNumber = p.modelNumber WHERE FIND_IN_SET(c.categoryName, ('$categories')) AND (itemPrice BETWEEN $priceMin AND $priceMax) AND (brandName IN ($brands)) GROUP BY i.modelNumber LIMIT $index,10";
+            $sortBy = ($request->input("sortBy"));
+            $searchKey = $pdo->quote("%" . $request->input("searchKey") . "%");
+
+            $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice,
+             i.salePrice, i.brandName, i.stockQuantity, i.description as description,
+              GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories,
+               GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') 
+               as pictures FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber 
+               LEFT JOIN Picture p ON c.modelNumber = p.modelNumber 
+               WHERE FIND_IN_SET(c.categoryName, ('$categories')) 
+               AND (itemPrice BETWEEN $priceMin AND $priceMax) 
+               AND (brandName IN ($brands)) 
+               AND (i.itemName LIKE $searchKey OR i.description LIKE $searchKey) GROUP BY i.modelNumber ORDER BY $sortBy LIMIT $index,10";
+
             //return $sql;
             $items = DB::select($sql);
             for ($i = 0; $i < count($items); $i++) {
@@ -81,25 +94,20 @@ class InventoryController extends Controller {
         }
         return response()->json(['result' => $result, 'data' => $responseData ]);
     }
-    
+
     public function inventory()
     {
-        $data = array();
-        $data["title"] = "Inventory";
         $items = DB::select("SELECT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(c.categoryName SEPARATOR ', ') as categories FROM Item i JOIN Category c ON i.modelNumber = c.modelNumber GROUP BY i.modelNumber");
         for ($i = 0; $i < count($items); $i++) {
             $items[$i]->categories = explode(', ', $items[$i]->categories);
         }
-        return view('inventory', compact('data', 'items', 'categories'));
+        return view('inventory', compact('items', 'categories'));
     }
-    
+
     public function itemForm($modelNumber = null)
     {
-        $data = array();
-        $data['title'] = "Item Form";
-        
         if (!is_null($modelNumber)) {
-            $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
+            $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber LEFT JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
             $url = route("updateItem");
             $item->pictures = ($item->pictures) ? explode(', ', $item->pictures) : array();
         } else {
@@ -117,11 +125,11 @@ class InventoryController extends Controller {
         }
         $brandNames = DB::select("SELECT DISTINCT brandName FROM Item");
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
-        return view('Inventory/itemForm', compact('data', 'item', 'brandNames', 'categories', 'url'));
+        return view('Inventory/itemForm', compact('item', 'brandNames', 'categories', 'url'));
     }
-    
+
     /**
-     * 
+     *
      * @param Request $request - inputs passed from user
      * @return route back to item form if the submission was invalid or back to
      *          home page
@@ -153,7 +161,7 @@ class InventoryController extends Controller {
             $categories = explode(",", $request->input("categories"));
             $sql = "INSERT INTO Item (modelNumber, itemName, brandName, itemPrice, salePrice, stockQuantity, description) VALUES ($modelNumber, $itemName, $brandName, $itemPrice, $salePrice, $stockQuantity, $description)";
             DB::insert($sql);
-            
+
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
                     $filename = $file->store(null, 'public');
@@ -170,9 +178,9 @@ class InventoryController extends Controller {
             return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param Request $request - inputs passed from user
      */
     public function updateItem(Request $request)
@@ -221,7 +229,7 @@ class InventoryController extends Controller {
             return redirect()->back()->withInput($request->input())->withErrors($validator);
         }
     }
-    
+
     /**
      * @param Request $request - filePath
      */
@@ -239,7 +247,7 @@ class InventoryController extends Controller {
             }
         }
     }
-    
+
     public function deleteItem(Request $request)
     {
         $validator = Validator::make($request->all(),
@@ -259,4 +267,11 @@ class InventoryController extends Controller {
             return $validator->errors()->messages();
         }
     }
+
+    public function getDescription($modelNumber) {
+      $item = DB::select("SELECT * FROM Item WHERE modelNumber = '$modelNumber'")[0];
+      return view('inventory/itemDescription', compact('item'));
+    }
+
+
 }

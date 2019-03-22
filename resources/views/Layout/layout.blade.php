@@ -7,9 +7,10 @@ and open the template in the editor.
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
-        <title>{{ config('app.name') }} | {{ $data['title'] }}</title>
+        <title>{{ config('app.name') }} | {{ $title }}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('public/semanticUI/semantic/out/semantic.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/semantic.min.css') }}">
@@ -31,12 +32,62 @@ and open the template in the editor.
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/dropdown.js') }}"></script>
+        <script src="{{ asset('public/js/jquery.particleground.min.js') }}"></script>
         <script>
             $('.ui.sidebar').sidebar('toggle');
+            $(document).ready(function () {
+                $('#background').particleground({
+                    dotColor: '#CCC',
+                    lineColor: '#CCC',
+                    curvedLines: false,
+                    density: 5000
+                });
+                
+                $("#Logo").css('height', $(".right.menu .item").height() * 1.75);
+                $("#Logo").css('width', 'auto');
+            });
         </script>
     </head>
     <body>
-        <!-- @yield('semantic')  -->
+        @if ($showHeader)
+            <div class="ui top attached menu large stackable inverted">
+                <a href="{{ route('home') }}" class="item">
+                    <img src="{{ asset('public/img/Logo-2.png') }}" id="Logo" />
+                </a>
+                <div class="right menu">
+                    @if (\Auth::check())
+                @if ((Auth::user()->type == "admin") || (Auth::user()->type == "master"))
+                    <a href="{{ route('itemForm')}}" class="item">Create Item</a>
+                    <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
+                @endif
+                    <a href="{{ route('cart') }}" class="item">
+                        <i class="shopping cart icon"></i>
+                    </a>
+                    @endif
+                    <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">
+                        @csrf
+                        <div class="ui transparent icon input inverted">
+                            <input class="prompt" type="text" placeholder="Search items..." name="searchKey">
+                            <i class="search link inverted icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </form>
+                    @if (\Auth::check())
+                    <a href="{{ route('logout')}}" class="item">Logout</a>
+                    @else
+                    <a href="{{ route('login')}}" class="item">Login</a>
+                    @endif
+                </div>
+            </div>
+            <div class="ui bottom attached segment">
+                <p></p>
+            </div>
+        <span id="background" style="position: fixed;z-index: -1;width:100%;height:100%;"></span>
+        <div class="ui container segment">
         @yield('content')
+        </div>
+        @else
+        @yield('content')
+        @endif
     </body>
 </html>

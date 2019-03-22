@@ -1,4 +1,4 @@
-@extends('Layout/layout')
+@extends('Layout/layout', ['showHeader' => false, 'title' => 'Email Sent'])
 @section('content')
 @include('Layout/singleFormStyle')
 <div class="ui middle aligned center aligned grid">

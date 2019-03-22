@@ -26,9 +26,7 @@ class RegisterController extends Controller {
      */
     public function register()
     {
-        $data = array();
-        $data["title"] = "Register";
-        return view('register', compact('data'));
+        return view('register');
     }
     
     /**

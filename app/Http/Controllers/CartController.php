@@ -27,12 +27,19 @@ class CartController extends Controller {
     public function cartPage()
     {
         $user = Auth::user();
-        $data = array();
-        $data["title"] = "Cart";
-        $itemsInCart = DB::select("SELECT * FROM Cart WHERE email='$user->email'")[0];
-        $itemsInCart = json_decode(json_encode($itemsInCart), true);
+        $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
+        if (!$cart) {
+            DB::insert("INSERT INTO Cart (email) VALUES ('$user->email')");
+            $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
+        }
+        $cartId = $cart[0]->cartId;
+        $items = DB::select ("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM CartToItem ci "
+                . "JOIN Item i ON ci.modelNumber = i.modelNumber "
+                . "LEFT JOIN Category c ON i.modelNumber=c.modelNumber "
+                . "JOIN Picture p ON i.modelNumber=p.modelNumber "
+                . "WHERE ci.cartID='$cartId' GROUP BY ci.modelNumber");
 
-        return view('cart', compact('data', 'itemsInCart'));
+        return view('cart', compact('itemsInCart', 'items'));
     }
 
     /**
@@ -71,22 +78,6 @@ class CartController extends Controller {
     public function checkout(){
       // Gather items from the cart.
       $user = Auth::user();
-      $cart = DB::select("SELECT * FROM cartTable WHERE email = '$user->email'")[0];
-      DB::insert("INSERT INTO Orders (email, modelNumber0, modelNumber1, modelNumber2, modelNumber3, modelNumber4, modelNumber5, modelNumber6, modelNumber7, modelNumber8, modelNumber9, deliveryAddress, estDeliveryDate) VALUES ($cart->email,
-      $cart->modelNumber0,
-      $cart->modelNumber1,
-      $cart->modelNumber2,
-      $cart->modelNumber3,
-      $cart->modelNumber4,
-      $cart->modelNumber5,
-      $cart->modelNumber6,
-      $cart->modelNumber7,
-      $cart->modelNumber8,
-      $cart->modelNumber9,
-      'hello',
-      '1970-01-01 00:00:01')");
-
-
-      DB::delete("DELETE FROM cartTable WHERE email = 'davindeol@gmail.com'");
+      return __METHOD__;
     }
 }
