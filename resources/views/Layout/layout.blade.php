@@ -10,6 +10,7 @@ and open the template in the editor.
         <title>{{ config('app.name') }} | {{ $title }}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('public/semanticUI/semantic/out/semantic.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/semantic.min.css') }}">
@@ -51,13 +52,14 @@ and open the template in the editor.
                         <i class="shopping cart icon"></i>
                     </a>
                     @endif
-                    <div class="ui right aligned category search item">
+                    <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">
+                        @csrf
                         <div class="ui transparent icon input">
-                            <input class="prompt" type="text" placeholder="Search items...">
+                            <input class="prompt" type="text" placeholder="Search items..." name="searchKey" value="{{ $searchKey }}">
                             <i class="search link icon"></i>
                         </div>
                         <div class="results"></div>
-                    </div>
+                    </form>
                     @if (\Auth::check())
                     <a href="{{ route('logout')}}" class="item">Logout</a>
                     @else

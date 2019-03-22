@@ -37,11 +37,12 @@ class InventoryController extends Controller {
      *
      * @return inventory HTML page
      */
-    public function home()
+    public function home(Request $request)
     {
+        $searchKey = $request->input('searchKey', '');
         $brandNames = DB::select("SELECT DISTINCT brandName FROM Item");
         $categories = DB::select("SELECT DISTINCT categoryName FROM Category");
-        return view('home', compact('brandNames', 'categories'));
+        return view('home', compact('brandNames', 'categories', 'searchKey'));
     }
 
     /**
@@ -60,11 +61,13 @@ class InventoryController extends Controller {
             ]
         );
         if (!$validator->fails()) {
+            $pdo = DB::connection()->getPdo();
             $priceMin = ($request->input("priceMin") !== null) ? $request->input("priceMin") : 0;
             $priceMax = ($request->input("priceMax") !== null) ? $request->input("priceMax") : 9999.99;
             $brands = InventoryController::arrayToMySQLFriendly(($request->input("brand", [''])));
             $categories = implode(",", $request->input("category", ['']));
             $sortBy = ($request->input("sortBy"));
+            $searchKey = $pdo->quote("%" . $request->input("searchKey") . "%");
 
             $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice,
              i.salePrice, i.brandName, i.stockQuantity, i.description as description,
@@ -74,7 +77,8 @@ class InventoryController extends Controller {
                LEFT JOIN Picture p ON c.modelNumber = p.modelNumber 
                WHERE FIND_IN_SET(c.categoryName, ('$categories')) 
                AND (itemPrice BETWEEN $priceMin AND $priceMax) 
-               AND (brandName IN ($brands)) GROUP BY i.modelNumber ORDER BY $sortBy LIMIT $index,10";
+               AND (brandName IN ($brands)) 
+               AND (i.itemName LIKE $searchKey OR i.description LIKE $searchKey) GROUP BY i.modelNumber ORDER BY $sortBy LIMIT $index,10";
 
             //return $sql;
             $items = DB::select($sql);

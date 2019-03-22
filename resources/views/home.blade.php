@@ -5,6 +5,7 @@
         <div class="three wide column">
             <div class="ui vertical menu">
                 <form action="" method="POST" id='filterForm'>
+                    <input type="hidden" name="searchKey" value="{{ $searchKey }}" />
                     <div class="item">
                         <h2>Category</h2>
                         @foreach ($categories as $row)
@@ -40,11 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                            <button type="button" class="ui primary button">
-                                Save
-                            </button>
-                        
-                        
+                            <button type="button" class="ui primary button">Apply</button>
                         </div>
                     </div>
                     <div class="item">
@@ -75,10 +72,16 @@
         </div>
     </div>
 </div>
-
+<div id="loadingClone" style="display:none">
+    <div class="ui active inverted dimmer">
+        <div class="ui large text loader">Loading</div>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
 <script>
     $(document).ready(function () {
-        
         $("body").on('click', '.addToCartButton', function () {
             var modelNumber = $(this).val();
             var quantityID = modelNumber + "Quantity";
@@ -130,6 +133,8 @@
 
         function sendRequest(index) {
             $("#itemsSection").html("");
+            $("#itemsSection").html($("#loadingClone").html());
+            
             $.ajax({
                 url: "{{ route('getItems') }}/" + index,
                 type: "POST",
@@ -140,6 +145,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response) {
+                    $("#itemsSection").html("");
                     $("#itemsSection").append(response["data"]);
                     $(".description").css('max-height', (parseInt($('.square.image').css('height'), 10) / 2));
                 },

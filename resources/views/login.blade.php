@@ -165,13 +165,18 @@
                         <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                     </div>
                 </div>
-        <div class="ui message">
-            <div class="ui checkbox">
-                <input type="checkbox" name="rememberMe">
-                <label>Remember Me</label>
-            </div>
-        </div>
-                <div class="ui fluid submit button">
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="rememberMe">
+                            <label>Remember Me</label>
+                        </div>
+                    </div>
+                    <div class="eleven wide field" style="text-align:right;">
+                        <a href="{{ route('register') }}">Forgot my password</a>
+                    </div>
+                </div>
+                <div class="ui fluid submit red button">
                     <button type="submit">
                         Submit
                     </button>
@@ -185,7 +190,10 @@
             @endif
         </form>
 
-        <div class="ui animated button" tabindex="0">
+        <div class="ui message">
+            New to us? <a href="{{ route('register') }}">Sign up</a>
+        </div>
+<!--        <div class="ui animated button" tabindex="0">
             <a href="{{ route('home') }}">
             <div class="visible content">Back</div>
             <div class="hidden content">
@@ -208,7 +216,7 @@
                 <i class="right arrow icon"></i>
             </div>
             </a>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -250,10 +258,8 @@
     var txt = 'Login to {{ config('app.name', 'Laravel') }}'; /* The text */
     var speed = 50; /* The speed/duration of the effect in milliseconds */
     window.onload = function(){
-    setTimeout(typeWriter(), 
-        speed);
-
-};
+        setTimeout(typeWriter(), speed);
+    };
 function typeWriter() {
   if (i < txt.length) {
     document.getElementById("typewriter").innerHTML += txt.charAt(i);

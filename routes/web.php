@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', 'InventoryController@home')->name('home');
+    Route::match(['get', 'post'], '/', 'InventoryController@home')->name('home');
     Route::post('/getItems/{index?}', 'InventoryController@getItems')->name('getItems');
 
     Route::get('/forgotPassword', 'ForgotPasswordController@forgotPassword')->name('forgotPassword');
