@@ -38,16 +38,21 @@ and open the template in the editor.
             $(document).ready(function () {
                 $('#background').particleground({
                     dotColor: '#CCC',
-                    lineColor: '#CCC'
+                    lineColor: '#CCC',
+                    curvedLines: false,
+                    density: 5000
                 });
+                
+                $("#Logo").css('height', $(".right.menu .item").height() * 1.75);
+                $("#Logo").css('width', 'auto');
             });
         </script>
     </head>
     <body>
         @if ($showHeader)
-            <div class="ui top attached menu inverted">
+            <div class="ui top attached menu large stackable inverted">
                 <a href="{{ route('home') }}" class="item">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('public/img/Logo-2.png') }}" id="Logo" />
                 </a>
                 <div class="right menu">
                     @if (\Auth::check())
@@ -61,7 +66,7 @@ and open the template in the editor.
                     @endif
                     <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">
                         @csrf
-                        <div class="ui transparent icon input">
+                        <div class="ui transparent icon input inverted">
                             <input class="prompt" type="text" placeholder="Search items..." name="searchKey">
                             <i class="search link inverted icon"></i>
                         </div>
@@ -77,7 +82,7 @@ and open the template in the editor.
             <div class="ui bottom attached segment">
                 <p></p>
             </div>
-        <span id="background" style="position: absolute;z-index: -1;width:100%;height:100%;"></span>
+        <span id="background" style="position: fixed;z-index: -1;width:100%;height:100%;"></span>
         <div class="ui container segment">
         @yield('content')
         </div>

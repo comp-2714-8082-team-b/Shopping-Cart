@@ -1,7 +1,7 @@
 @extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
 <div class="ui bottom attached pushable stackable grid">
-    <div class="row">
+    <div class="row" style="padding-top:0;">
         <div class="four wide column">
             <div class="ui visible inverted left vertical sidebar menu form inverted">
                 <form action="" method="POST" id='filterForm'>
@@ -68,6 +68,9 @@
         </div>
         <div class="twelve wide column">
             <div class="ui basic segment">
+                @if ($searchKey)
+                     <h1>Results for "{{ $searchKey }}"</h1>
+                @endif
                 <div class="ui divided items" id="itemsSection">
                 </div>
             </div>
