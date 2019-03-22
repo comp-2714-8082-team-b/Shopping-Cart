@@ -10,12 +10,12 @@
             </div>
         @endif
         <div class="fields">
-            <div class="five wide field">
+            <div class="six wide field">
                 <label>Model Number</label>
                 <input type="text" placeholder="Model Number" name="modelNumber" value="{{ old('modelNumber', $item->modelNumber)  }}">
                 <input type="hidden" name="formerModelNumber" value="{{ $item->modelNumber }}">
             </div>
-            <div class="five wide field">
+            <div class="six wide field">
                 <label>Item Name</label>
                 <input type="text" placeholder="Item Name" name="itemName" value="{{ old('itemName', $item->itemName) }}">
             </div>
@@ -51,7 +51,7 @@
                     <input type="number" placeholder="0" id="stockQuantity" name="stockQuantity" value="{{ old('stockQuantity', $item->stockQuantity) }}">
                 </div>
             </div>
-            <div class="six wide field">
+            <div class="seven wide field">
                 <label>Categories</label>
                 <div class="ui fluid multiple search selection dropdown">
                     <input name="categories" type="hidden" value="{{ old('categories', $item->categories) }}">
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="fields">
-            <div class="fourteen wide field">
+            <div class="sixteen wide field">
                 <label>Description</label>
                 <textarea name="description">{{ old('description', $item->description) }}</textarea>
             </div>

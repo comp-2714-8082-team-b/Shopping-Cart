@@ -1,9 +1,8 @@
-@extends('Layout/layout')
-@include('Layout/header')
+@extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
-@for ($i = 0; $i < 10; $i++)
-    @if ($itemsInCart["modelNumber" . $i])
-    <p>{{ $itemsInCart["modelNumber" . $i] }}
-    @endif
-@endfor
+@if (!$items)
+<h1>You currently have no items</h1>
+@else
+@include('item', ['items' => $items])
+@endif
 @endsection

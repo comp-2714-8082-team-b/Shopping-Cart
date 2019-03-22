@@ -32,13 +32,20 @@ and open the template in the editor.
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/dropdown.js') }}"></script>
+        <script src="{{ asset('public/js/jquery.particleground.min.js') }}"></script>
         <script>
             $('.ui.sidebar').sidebar('toggle');
+            $(document).ready(function () {
+                $('#background').particleground({
+                    dotColor: '#CCC',
+                    lineColor: '#CCC'
+                });
+            });
         </script>
     </head>
     <body>
         @if ($showHeader)
-            <div class="ui top attached menu">
+            <div class="ui top attached menu inverted">
                 <a href="{{ route('home') }}" class="item">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -55,8 +62,8 @@ and open the template in the editor.
                     <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">
                         @csrf
                         <div class="ui transparent icon input">
-                            <input class="prompt" type="text" placeholder="Search items..." name="searchKey" value="{{ $searchKey }}">
-                            <i class="search link icon"></i>
+                            <input class="prompt" type="text" placeholder="Search items..." name="searchKey">
+                            <i class="search link inverted icon"></i>
                         </div>
                         <div class="results"></div>
                     </form>
@@ -70,7 +77,12 @@ and open the template in the editor.
             <div class="ui bottom attached segment">
                 <p></p>
             </div>
-        @endif
+        <span id="background" style="position: absolute;z-index: -1;width:100%;height:100%;"></span>
+        <div class="ui container segment">
         @yield('content')
+        </div>
+        @else
+        @yield('content')
+        @endif
     </body>
 </html>

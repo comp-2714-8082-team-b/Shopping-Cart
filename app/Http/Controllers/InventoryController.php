@@ -107,7 +107,7 @@ class InventoryController extends Controller {
     public function itemForm($modelNumber = null)
     {
         if (!is_null($modelNumber)) {
-            $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
+            $item = DB::select("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber=c.modelNumber LEFT JOIN Picture p ON i.modelNumber=p.modelNumber WHERE i.modelNumber='$modelNumber'")[0];
             $url = route("updateItem");
             $item->pictures = ($item->pictures) ? explode(', ', $item->pictures) : array();
         } else {

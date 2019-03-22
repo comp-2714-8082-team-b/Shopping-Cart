@@ -6,22 +6,22 @@
     <div class="header" id="ajaxResultHeader"></div>
     <p id="ajaxResultMessage"></p>
 </div>
-<div class="ui six column grid">
+<div class="ui form">
 @for ($i = 0; $i < count($users); $i++)
-    <form class="ui large form row userForm">
-        <div class="column ui input middle aligned">
+    <form class="ui large fields userForm">
+        <div class="field ui input middle aligned">
             <input type="text" name="email" value="{{ $users[$i]->email }}" readonly="readonly">
         </div>
-        <div class="column ui input middle aligned">
+        <div class="field ui input middle aligned">
             <input type="text" name="userName" value="{{ $users[$i]->userName }}">
         </div>
-        <div class="column ui input middle aligned">
+        <div class="field ui input middle aligned">
             <input type="text" name="firstName" value="{{ $users[$i]->firstName }}">
         </div>
-        <div class="column ui input middle aligned">
+        <div class="field ui input middle aligned">
             <input type="text" name="lastName" value="{{ $users[$i]->lastName }}">
         </div>
-        <div class="column middle aligned">
+        <div class="field middle aligned">
             <select name="type" class="ui dropdown">
                 @if ($users[$i]->type == "user")
                     <option value="user" selected>User</option>
@@ -36,7 +36,7 @@
                 @endif
             </select>
         </div>
-        <div class="column middle aligned">
+        <div class="field middle aligned">
             <button type="button" value="Update" class="ui icon blue button" onclick="saveOrDeleteUser(0, {{ $i }})">
                 <i class="save icon"></i> Save
             </button>
