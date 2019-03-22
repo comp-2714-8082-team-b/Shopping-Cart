@@ -1,13 +1,9 @@
-@extends('Layout/layout')
+@extends('Layout/layout', ['showHeader' => false, 'title' => 'Forgot Password'])
 @section('content')
 @include('Layout/singleFormStyle')
-<div class="ui middle aligned center aligned grid">
+<div class="ui middle aligned center aligned grid style fade-in">
     <div class="column">
-        <h2 class="ui teal image header">
-            <div class="content">
-                Forgot Password
-            </div>
-        </h2>
+        <h1>Forgot Password</h1>
         <form class="ui large form" method="POST" action="{{ route('submitForgotPassword') }}" id="forgotPasswordForm">
             @csrf
             <div class="ui stacked segment">
@@ -18,7 +14,7 @@
                         <input type="text" name="email" placeholder="Email Address" value="{{ old('email') }}">
                     </div>
                 </div>
-                <div class="ui fluid large teal submit button">
+                <div class="ui fluid large submit red button">
                     <button type="submit">
                         Submit
                     </button>

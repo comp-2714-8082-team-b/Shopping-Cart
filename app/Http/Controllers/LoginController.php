@@ -25,9 +25,7 @@ class LoginController extends Controller {
      */
     public function login()
     {
-        $data = array();
-        $data["title"] = "Login";
-        return view('login', compact('data'));
+        return view('login');
     }
     
     /**

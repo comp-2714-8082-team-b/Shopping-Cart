@@ -18,12 +18,10 @@ use Illuminate\Support\Facades\Hash;
  */
 class ResetPasswordController extends Controller {
     public function resetPassword($token) {
-        $data = array();
-        $data['title'] = "Reset Password";
         if (empty(DB::select("SELECT * FROM PasswordResets WHERE token='$token'"))) {
             return redirect()->route('home');
         } else {
-            return view('ResetPassword/resetPassword', compact('data', 'token'));
+            return view('ResetPassword/resetPassword', compact('token'));
         }
     }
     public function submitResetPassword(Request $request, $token) {

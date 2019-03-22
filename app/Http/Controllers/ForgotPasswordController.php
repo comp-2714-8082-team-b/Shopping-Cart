@@ -19,9 +19,7 @@ use Mail;
 class ForgotPasswordController extends Controller {
     public function forgotPassword()
     {
-        $data = array();
-        $data['title'] = "Forgot Password";
-        return view('ForgotPassword/forgotPassword', compact('data'));
+        return view('ForgotPassword/forgotPassword');
     }
     public function submitForgotPassword(Request $request)
     {

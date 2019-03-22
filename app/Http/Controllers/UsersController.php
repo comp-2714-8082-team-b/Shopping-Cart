@@ -22,12 +22,8 @@ class UsersController extends Controller {
      */
     public function manageUsersPage()
     {
-        $data = array();
-        $data['title'] = "Manage Users";
-        
         $users = DB::select("SELECT * FROM Users");
-        
-        return view('Admin/manageUsers', compact('data', 'users'));
+        return view('Admin/manageUsers', compact('users'));
     }
     
     /**
