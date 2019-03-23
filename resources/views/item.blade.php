@@ -1,11 +1,7 @@
-<!-- This file is for creating the layout of a single item
-Get the item's column name with the following syntax:
-<open parentheses><open parentheses> $item->name <closing parentheses><closing parentheses> -->
 @foreach ($items as $item)
 <div class="item">
     <div class="image">
         <div class="ui placeholder">
-            
             @if ($item->pictures[0])
                 <div class="square image" style="background-image: url('{{ asset('storage/app/public/' . $item->pictures[0]) }}');background-size: cover;"></div>
             @else
@@ -14,7 +10,7 @@ Get the item's column name with the following syntax:
         </div>
     </div>
     <div class="content">
-        <a class="header">{{ $item->itemName }}</a>
+        <a href="{{ route('getDescription', ['modelNumber' => $item->modelNumber ]) }}" class="header">{{ $item->itemName }}</a>
         <div class="meta">
             <span class="modelNumber">{{ $item->modelNumber }}</span>
             @if (is_null($item->salePrice))
@@ -26,7 +22,7 @@ Get the item's column name with the following syntax:
             <span class="brandName">Brand: {{ $item->brandName }}</span>
             <span class="stockQuantity">In Stock: {{ $item->stockQuantity }}</span>
         </div>
-        <div class="description">
+        <div class="description" style='overflow:hidden;'>
             <p>{!! nl2br($item->description) !!}</p>
         </div>
         <div class="extra">
@@ -35,18 +31,36 @@ Get the item's column name with the following syntax:
             @endforeach
         </div>
         @if (\Auth::check())
-            @if (\Auth::user()->type != "user")
             <div class="footer">
-                <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button deleteItem">
-                    <i class="x icon"></i> Delete
-                </button>
-                <a href="{{ route('itemForm', ['modelNumber' => $item->modelNumber]) }}">
-                    <button type="button" value="Edit" class="ui right floated icon blue button">
-                        <i class="edit icon"></i> Edit
-                    </button>
-                </a>
+                <form action="" method="POST" class="ui form">
+                    <div class="fields right floated">
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="number" placeholder="Quantity" name='quantity' />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon green button deleteItem">
+                                <i class="cart plus icon"></i> Add to Cart
+                            </button>
+                        </div>
+                        @if (\Auth::user()->type != "user")
+                            <div class="field">
+                                <a href="{{ route('itemForm', ['modelNumber' => $item->modelNumber]) }}">
+                                    <button type="button" value="Edit" class="ui right floated icon blue button">
+                                        <i class="edit icon"></i> Edit
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="field">
+                                <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button deleteItem">
+                                    <i class="x icon"></i> Delete
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                </form>
             </div>
-            @endif
         @endif
     </div>
 </div>
