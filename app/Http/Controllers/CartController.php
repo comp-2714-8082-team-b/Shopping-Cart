@@ -27,18 +27,12 @@ class CartController extends Controller {
     public function cartPage()
     {
         $user = Auth::user();
-        $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
-        if (!$cart) {
-            DB::insert("INSERT INTO Cart (email) VALUES ('$user->email')");
-            $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
-        }
-        $cartId = $cart[0]->cartId;
+        $cartId = CartController::getCartId();
         $items = DB::select ("SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice, i.salePrice, i.brandName, i.stockQuantity, i.description, GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories, GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') as pictures FROM CartToItem ci "
                 . "JOIN Item i ON ci.modelNumber = i.modelNumber "
                 . "LEFT JOIN Category c ON i.modelNumber=c.modelNumber "
                 . "JOIN Picture p ON i.modelNumber=p.modelNumber "
                 . "WHERE ci.cartID='$cartId' GROUP BY ci.modelNumber");
-
         return view('cart', compact('itemsInCart', 'items'));
     }
 
@@ -52,22 +46,20 @@ class CartController extends Controller {
     {
         $validator = Validator::make($request->all(),
             [
-                'modelNumber' => 'required',
-                'requestedQuantity' => 'required',
+                'modelNumber' => 'required|exists:Item,modelNumber',
+                'quantity' => 'required',
             ]
         );
         if (!$validator->fails()) {
-            $user = Auth::user();
             $modelNumber = $request->input("modelNumber");
-            $requestedQuantity = $request->input("requestedQuantity");
-
-            for ($i = 0; $i < $requestedQuantity; $i++) {
-                $items = DB::insert("INSERT INTO Cart (email, modelNumber$i) VALUES ('$user->email', '$modelNumber')");
+            $requestedQuantity = $request->input("quantity");
+            $cartId = CartController::getCartId();
+            $item = DB::select("SELECT * FROM Item WHERE modelNumber = $modelNumber LIMIT 1")[0];
+            for ($i = 0; $i < min($requestedQuantity, $item->stockQuantity); $i++) {
+                DB::insert("INSERT INTO CartToItem VALUES ('$cartId', '$modelNumber')");
             }
-
-            $itemName = DB::select("SELECT itemName FROM Item WHERE modelNumber = $modelNumber LIMIT 1")[0]->itemName;
             $result = "success";
-            $responseData = "Added $requestedQuantity $itemName to cart";
+            $responseData = "Added $requestedQuantity $item->itemName to cart";
         } else {
             $result = "fail";
             $responseData = $validator->errors()->messages();
@@ -79,5 +71,22 @@ class CartController extends Controller {
       // Gather items from the cart.
       $user = Auth::user();
       return __METHOD__;
+    }
+    
+    /**
+     * This function determines if the current user has a cart and if not,
+     * creates it. It then returns the user's cart ID.
+     * @return the number representing the current user's cart ID
+     */
+    public function getCartId()
+    {
+        $user = Auth::user();
+        $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
+        if (!$cart) {
+            DB::insert("INSERT INTO Cart (email) VALUES ('$user->email')");
+            $cart = DB::select("SELECT * FROM Cart WHERE email='$user->email'");
+        }
+        
+        return $cart[0]->cartId;
     }
 }

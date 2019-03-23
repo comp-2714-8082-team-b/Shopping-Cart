@@ -37,12 +37,11 @@ and open the template in the editor.
             $('.ui.sidebar').sidebar('toggle');
             $(document).ready(function () {
                 $('#background').particleground({
-                    dotColor: '#CCC',
-                    lineColor: '#CCC',
+                    dotColor: '#F4BEBE',
+                    lineColor: '#BCDAF0',
                     curvedLines: false,
                     density: 5000
                 });
-                
                 $("#Logo").css('height', $(".right.menu .item").height() * 1.75);
                 $("#Logo").css('width', 'auto');
             });
@@ -61,7 +60,7 @@ and open the template in the editor.
                     <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
                 @endif
                     <a href="{{ route('cart') }}" class="item">
-                        <i class="shopping cart icon"></i>
+                        <i class="shopping cart icon"></i><span id="totalInCart">$10.01</span>
                     </a>
                     @endif
                     <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">

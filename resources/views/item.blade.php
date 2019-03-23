@@ -36,11 +36,11 @@
                     <div class="fields right floated">
                         <div class="field">
                             <div class="ui input">
-                                <input type="number" placeholder="Quantity" name='quantity' />
+                                <input type="tel" placeholder="Quantity" name='quantity' value="0" size="7" class="quantity" />
                             </div>
                         </div>
                         <div class="field">
-                            <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon green button deleteItem">
+                            <button type="button" value="{{ $item->modelNumber }}" class="ui right floated icon red button addToCartButton">
                                 <i class="cart plus icon"></i> Add to Cart
                             </button>
                         </div>

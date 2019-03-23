@@ -1,7 +1,7 @@
 @extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
 <div class="ui bottom attached pushable stackable grid">
-    <div class="row" style="padding-top:0;">
+    <div class="row">
         <div class="four wide column">
             <div class="ui visible inverted left vertical sidebar menu form inverted">
                 <form action="" method="POST" id='filterForm'>
@@ -167,14 +167,13 @@
     $(document).ready(function () {
         $("body").on('click', '.addToCartButton', function () {
             var modelNumber = $(this).val();
-            var quantityID = modelNumber + "Quantity";
-            var requestedQuantity = $("#" + quantityID).val();
+            var quantity = $(this).closest('.fields').find('.quantity').val();
             $.ajax({
                 url: "{{ route('addToCart') }}",
                 type: "POST",
                 data: {
                     modelNumber: modelNumber,
-                    requestedQuantity: requestedQuantity
+                    quantity: quantity
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
