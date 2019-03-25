@@ -34,8 +34,10 @@ Route::group(['middleware' => 'web'], function () {
     
 
     Route::group(['middleware' => 'auth'], function () {
+        Route::get('/getTotal', 'CartController@getTotal')->name('getTotal');
         Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
         Route::get('/cart', 'CartController@cartPage')->name('cart');
+        Route::post('/checkout', 'CartController@checkout')->name('checkout');
         Route::group(['middleware' => 'is_admin'], function () {
             Route::get('/inventory', 'InventoryController@inventory')->name('inventory');
 

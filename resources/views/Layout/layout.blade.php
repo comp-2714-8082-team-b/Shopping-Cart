@@ -35,15 +35,35 @@ and open the template in the editor.
         <script src="{{ asset('public/js/jquery.particleground.min.js') }}"></script>
         <script>
             $('.ui.sidebar').sidebar('toggle');
+            function shortenItemDescriptions()
+            {
+                $(".description").css('max-height', (parseInt($('.square.image').css('height'), 10) / 2));
+            }
+            function updateTotalInCart()
+            {
+                $.ajax({
+                    url: "{{ route('getTotal') }}",
+                    type: "GET",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        $("#totalInCart").html("$" + response);
+                    }
+                });
+            }
             $(document).ready(function () {
                 $('#background').particleground({
                     dotColor: '#F4BEBE',
                     lineColor: '#BCDAF0',
-                    curvedLines: false,
-                    density: 5000
+                    particleRadius: 10,
+                    density: 10000,
+                    maxSpeedX: 0.4,
+                    maxSpeedY: 0.4
                 });
                 $("#Logo").css('height', $(".right.menu .item").height() * 1.75);
                 $("#Logo").css('width', 'auto');
+                updateTotalInCart();
             });
         </script>
     </head>
@@ -60,7 +80,7 @@ and open the template in the editor.
                     <a href="{{ route('manageUsers')}}" class="item">Manage Users</a>
                 @endif
                     <a href="{{ route('cart') }}" class="item">
-                        <i class="shopping cart icon"></i><span id="totalInCart">$10.01</span>
+                        <i class="shopping cart icon"></i><span id="totalInCart"></span>
                     </a>
                     @endif
                     <form class="ui right aligned category search item" method="POST" action="{{ route('home') }}">
@@ -84,6 +104,13 @@ and open the template in the editor.
         <span id="background" style="position: fixed;z-index: -1;width:100%;height:100%;"></span>
         <div class="ui container segment">
         @yield('content')
+        </div>
+        <div class="ui inverted vertical footer segment">
+            <div class="ui right aligned container">
+                <div class="ui horizontal inverted small divided link list">
+                    <p class="item">Made By: Davin, Greg, Ken, Pamir</p>
+                </div>
+            </div>
         </div>
         @else
         @yield('content')
