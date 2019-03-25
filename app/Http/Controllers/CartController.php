@@ -73,6 +73,31 @@ class CartController extends Controller {
         }
         return response() ->json(['result' => $result, 'data' => $responseData]);
     }
+    
+    /**
+     * Completely removes an item from the user's cart
+     * @param Request $request - data passed from cart view
+     */
+    public function removeFromCart(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'modelNumber' => 'required|exists:Item,modelNumber'
+            ]
+        );
+        if (!$validator->fails()) {
+            $modelNumber = $request->input("modelNumber");
+            $cartId = CartController::getCartId();
+            DB::delete("DELETE FROM CartToItem WHERE modelNumber = $modelNumber AND cartID = '$cartId'");
+            $result = "success";
+            $item = DB::select("SELECT itemName FROM Item i WHERE modelNumber='$modelNumber'")[0];
+            $responseData = "Removed all the $item->itemName"."s from your cart";
+        } else {
+            $result = "fail";
+            $responseData = $validator->errors()->messages();
+        }
+        return response() ->json(['result' => $result, 'data' => $responseData]);
+    }
 
     public function checkout(Request $request)
     {

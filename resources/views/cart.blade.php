@@ -6,6 +6,11 @@
 <div class="ui divided items" id="itemsSection">
     @include('item', ['items' => $items, 'canBeAddedToCart' => false, 'canRemoveFromCart' => true])
 </div>
+<!--<div class="ui message hidden" id="ajaxResultBox">
+    <i class="close icon"></i>
+    <div class="header" id="ajaxResultHeader"></div>
+    <p id="ajaxResultMessage"></p>
+</div>-->
 <form action="{{ route('checkout') }}" method="POST" class="ui form">
     @csrf
     <div class="ui error message"></div>
@@ -120,6 +125,40 @@
         
         $(".quantity").change(function() {
             updateTotal();
+        });
+              
+        var itemToRemoveFromCart;
+        $("body").on('click', '.removeFromCartButton', function() {
+            itemToRemoveFromCart = $(this).closest(".item"); 
+            $.ajax({
+                type: "POST",
+                url: "{{ route('removeFromCart') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    modelNumber: $(this).val()
+                },
+                success: function(response) {
+                    if (response["result"] == "success") {
+                        alert(response["data"]);
+                        itemToRemoveFromCart.remove();
+                        updateTotal();
+                        updateTotalInCart();
+                        if ($("#itemsSection .item").length == 0) {
+                            $(".ui.container.segment").html("<h1>You currently have no items</h1>");
+                        }
+                    } else {
+                        itemToRemoveFromCart.find(".ui.error.message").html("<ul>");
+                        var arr = $.parseJSON(JSON.stringify(response["data"]));
+                        $.each(arr, function(index, value) {
+                            $(".ui.error.message").append("<li>" + value + "</li>");
+                        });
+                        itemToRemoveFromCart.find(".ui.error.message").append("</ul>");
+                        itemToRemoveFromCart.find(".ui.error.message").slideDown(300);
+                    }
+                }
+            });
         });
         
         $(":input").change(function() {

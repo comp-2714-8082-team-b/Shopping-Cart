@@ -36,6 +36,8 @@
         </div>
         @if (\Auth::check())
             <div class="footer">
+                
+                <div class="ui error message" style="display:none;"></div>
                 <form action="" method="POST" class="ui form">
                     <div class="fields right floated">
                         <div class="field">
@@ -85,6 +87,7 @@
                             </div>
                         @endif
                     </div>
+                    
                 </form>
             </div>
         @endif

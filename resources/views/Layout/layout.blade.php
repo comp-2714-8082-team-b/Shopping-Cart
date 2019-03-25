@@ -48,7 +48,10 @@ and open the template in the editor.
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (response) {
-                        $("#totalInCart").html("$" + response);
+                        if (response != 0)
+                            $("#totalInCart").html("$" + response);
+                        else
+                            $("#totalInCart").html("$0.00");
                     }
                 });
             }
