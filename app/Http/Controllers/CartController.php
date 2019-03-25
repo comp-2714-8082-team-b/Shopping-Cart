@@ -88,15 +88,48 @@ class CartController extends Controller {
         if (!$validator->fails()) {
             $modelNumber = $request->input("modelNumber");
             $cartId = CartController::getCartId();
-            DB::delete("DELETE FROM CartToItem WHERE modelNumber = $modelNumber AND cartID = '$cartId'");
-            $result = "success";
             $item = DB::select("SELECT itemName FROM Item i WHERE modelNumber='$modelNumber'")[0];
-            $responseData = "Removed all the $item->itemName"."s from your cart";
+            if ($request->has("quantity")) {
+                $quantity = $request->input("quantity");
+                DB::delete("DELETE FROM CartToItem WHERE modelNumber = $modelNumber AND cartID = '$cartId' LIMIT $quantity");
+                $responseData = "Removed $quantity $item->itemName"."s from your cart";
+            } else {
+                DB::delete("DELETE FROM CartToItem WHERE modelNumber = $modelNumber AND cartID = '$cartId'");
+                $responseData = "Removed all the $item->itemName"."s from your cart";
+            }
+            $result = "success";
         } else {
             $result = "fail";
             $responseData = $validator->errors()->messages();
         }
         return response() ->json(['result' => $result, 'data' => $responseData]);
+    }
+    
+    public function changeQuantityInCart(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'modelNumber' => 'required|exists:Item,modelNumber',
+                'quantity' => 'required',
+            ]
+        );
+        if (!$validator->fails()) {
+            $modelNumber = $request->input("modelNumber");
+            $quantity = $request->input("quantity");
+            $cartId = CartController::getCartId();
+            $sql = "SELECT COUNT(*) as amountInCart FROM CartToItem WHERE cartID='$cartId' AND modelNumber='$modelNumber'";
+            $response = DB::select($sql)[0];
+            if ($response->amountInCart < $quantity) {
+                $request->merge(['quantity' => ($quantity - $response->amountInCart)]);
+                return CartController::addToCart($request);
+            } else {
+                $request->merge(['quantity' => ($response->amountInCart - $quantity)]);
+                return CartController::removeFromCart($request);
+            }
+        } else {
+            $result = "fail";
+            $responseData = $validator->errors()->messages();
+        }
     }
 
     public function checkout(Request $request)

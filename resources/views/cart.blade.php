@@ -124,6 +124,33 @@
         }
         
         $(".quantity").change(function() {
+            itemToRemoveFromCart = $(this).closest(".item"); 
+            $.ajax({
+                type: "POST",
+                url: "{{ route('changeQuantityInCart') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    modelNumber: $(this).closest(".item").find(".modelNumber").html(),
+                    quantity: $(this).val()
+                },
+                success: function(response) {
+                    if (response["result"] == "success") {
+                        alert(response["data"]);
+                        updateTotal();
+                        updateTotalInCart();
+                    } else {
+                        itemToRemoveFromCart.find(".ui.error.message").html("<ul>");
+                        var arr = $.parseJSON(JSON.stringify(response["data"]));
+                        $.each(arr, function(index, value) {
+                            $(".ui.error.message").append("<li>" + value + "</li>");
+                        });
+                        itemToRemoveFromCart.find(".ui.error.message").append("</ul>");
+                        itemToRemoveFromCart.find(".ui.error.message").slideDown(300);
+                    }
+                }
+            });
             updateTotal();
         });
               

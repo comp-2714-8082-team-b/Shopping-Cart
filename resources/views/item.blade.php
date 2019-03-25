@@ -41,9 +41,6 @@
                 <form action="" method="POST" class="ui form">
                     <div class="fields right floated">
                         <div class="field">
-<!--                            <div class="ui input">
-                                <input type="tel" placeholder="Quantity" name='quantity' value="{{ (isset($item->quantity)) ? $item->quantity : "0" }}" size="7" class="quantity" />
-                            </div>-->
                             @if ($quantityChangable)
                             <div class="ui selection dropdown" style="min-width: 1em;">
                                 <input type="hidden" name="quantity" value="{{ (isset($item->quantity)) ? $item->quantity : "0" }}" class="quantity">

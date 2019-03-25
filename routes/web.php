@@ -37,6 +37,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/getTotal', 'CartController@getTotal')->name('getTotal');
         Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
         Route::post('/removeFromCart', 'CartController@removeFromCart')->name('removeFromCart');
+        Route::post('/changeQuantityInCart', 'CartController@changeQuantityInCart')->name('changeQuantityInCart');
         Route::get('/cart', 'CartController@cartPage')->name('cart');
         Route::post('/checkout', 'CartController@checkout')->name('checkout');
         Route::group(['middleware' => 'is_admin'], function () {
