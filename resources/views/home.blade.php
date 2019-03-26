@@ -76,13 +76,6 @@
             </div>
         </div>
     </div>
-<div id="loadingClone" style="display:none">
-    <div class="ui active inverted dimmer">
-        <div class="ui large text loader">Loading</div>
-    </div>
-    <p></p>
-    <p></p>
-    <p></p>
 </div>
 <script>
     $(document).ready(function () {
@@ -177,4 +170,12 @@
         ;
     });
 </script>
+<div id="loadingClone" style="display:none">
+    <div class="ui active inverted dimmer">
+        <div class="ui large text loader">Loading</div>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
 @endsection

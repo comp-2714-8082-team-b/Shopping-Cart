@@ -54,4 +54,5 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('/deleteFile', 'InventoryController@deleteFile')->name('deleteFile');
         });
     });
+    
 });
