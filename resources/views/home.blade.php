@@ -1,5 +1,11 @@
 @extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
+<style>
+h2 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+</style>
 <div class="ui bottom attached pushable stackable grid">
     <div class="row">
         <div class="four wide column">

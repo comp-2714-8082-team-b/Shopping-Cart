@@ -4,6 +4,11 @@
     $quantityChangable = (isset($quantityChangable)) ? $quantityChangable : true;
 @endphp
 @foreach ($items as $item)
+<style>
+.header .title {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+</style>
 <div class="item">
     <div class="image">
         <div class="ui placeholder">
@@ -16,7 +21,7 @@
         </div>
     </div>
     <div class="content">
-        <a href="{{ route('getDescription', ['modelNumber' => $item->modelNumber ]) }}" class="header">{{ $item->itemName }}</a>
+        <a href="{{ route('getDescription', ['modelNumber' => $item->modelNumber ]) }}" class="header title">{{ $item->itemName }}</a>
         <div class="meta">
             <span class="modelNumber">{{ $item->modelNumber }}</span>
             @if (is_null($item->salePrice))
