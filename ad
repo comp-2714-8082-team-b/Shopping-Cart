@@ -1,0 +1,553 @@
+[33mcommit 044eaf75d5066bdf411ff641e5c9604249d91386[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Thu Mar 21 11:54:13 2019 -0700
+
+    Updated Inventory controller and Item Description
+
+[33mcommit 142fedbacf6e489a59d602cd5f2e72ea9a5ed615[m
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Wed Mar 20 14:29:14 2019 -0700
+
+    hIGH
+
+[33mcommit d2b78a46b8836afe598a54b5ce3a1b88cf0b4c86[m
+Merge: ecdae0d e740a1b
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Wed Mar 20 14:27:54 2019 -0700
+
+    Merge branch 'develop' of https://github.com/comp-2714-8082-team-b/Shopping-Cart into develop
+
+[33mcommit e740a1bdf60e799afdc19211528359689ad21526[m[33m ([m[1;32mmike[m[33m)[m
+Merge: fb2d98d 3e47e5d
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Tue Mar 19 21:14:21 2019 -0700
+
+    Merge pull request #73 from Davin-Deol/develop
+    
+    Created Admin Pages
+
+[33mcommit 3e47e5d4b2770de6bc18861ed346c2ca884d9d26[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Tue Mar 19 21:12:10 2019 -0700
+
+    Implemented PDO
+
+[33mcommit 0e25c0c61a36ea295a86c294298b4bf87b9e322f[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Tue Mar 19 20:18:55 2019 -0700
+
+    Delete Item
+
+[33mcommit 88f84f37c0b5cd1804afc3f6b83c644e073c4e7c[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Tue Mar 19 20:09:38 2019 -0700
+
+    Update Items
+
+[33mcommit b793d8822cd307b216ed582d323bbc3e7e6b0d7b[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Tue Mar 19 15:44:00 2019 -0700
+
+    Create Items
+
+[33mcommit 05bed4c77ea67a2393650008e328c2fbf6c9cbfb[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sun Mar 17 13:55:16 2019 -0700
+
+    Delete users
+
+[33mcommit cc93a9c4514f901c902f3f14342075f72c3b787b[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sun Mar 17 01:46:21 2019 -0700
+
+    Update users
+
+[33mcommit ecdae0d52645e7bed4246b6f1e7420e4fdadb52a[m
+Merge: c468526 fb2d98d
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Fri Mar 15 14:00:54 2019 -0700
+
+    Merge branch 'develop' of https://github.com/comp-2714-8082-team-b/Shopping-Cart into develop
+
+[33mcommit c468526091ad955964d2db50b371e5d05c0fd944[m
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Fri Mar 15 13:59:35 2019 -0700
+
+    m
+
+[33mcommit fb2d98dfcc440fa0953150a4d398f127a61d36b0[m
+Merge: 5b96ed7 807c8d5
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:58:23 2019 -0700
+
+    Merge pull request #71 from Davin-Deol/develop
+    
+    Added Back Button on Login Page
+
+[33mcommit 807c8d5aee87a689d5a1bd802eb2d73c8d8fcc17[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:57:12 2019 -0700
+
+    Added Semantic to Composer dependencies
+
+[33mcommit 0681ec0ddfbf92ccdff88bf392c12250c0394206[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:41:05 2019 -0700
+
+    Added back button on login page
+
+[33mcommit 5b96ed72f51172921f1e99c4303d6afa13977f0a[m
+Merge: a75eb8f 8501a1a
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:33:09 2019 -0700
+
+    Merge pull request #69 from Davin-Deol/develop
+    
+    Made Inputs More Secure
+
+[33mcommit 8501a1a9bf1ca8f93afb2e34fe9b60979960b12a[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:26:29 2019 -0700
+
+    Moved remember me box to be inside the form
+
+[33mcommit 8ae5f416779f4a49bf2c7443fdafb94863be6311[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 20:21:18 2019 -0700
+
+    Validated passed from user on forgot password pages
+
+[33mcommit c65d22661f26dd59a0868f5658b2ebcb6c1ebf78[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 18:40:16 2019 -0700
+
+    Validated inputs passed from user for register page
+
+[33mcommit edbda54698a3b20fef860847cb12b70e2e784796[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 17:06:03 2019 -0700
+
+    Secured inputs passed on login page
+
+[33mcommit 78ef6fc0b3059b8ed759b6a80f446d979634d13f[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 15:16:29 2019 -0700
+
+    Put single form styles into separate file
+
+[33mcommit fe36731115c2f0f3c4d920c50e67f79d64e13762[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 14:58:45 2019 -0700
+
+    Put header in separate file
+
+[33mcommit 8984ec15e3c72e8f4352793630a0deccbc7e315c[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 13 13:08:03 2019 -0700
+
+    Added CSRF token to login page
+
+[33mcommit a75eb8fafdee6a2d32185ee3c44ec3fcf7776038[m
+Merge: 8a89f17 235c696
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sun Mar 10 13:48:16 2019 -0700
+
+    Merge pull request #67 from A01056715/develop
+    
+    stopped items from overlapping with side menu, added anchor element to home icon
+
+[33mcommit 235c696ba211b18f67c8b974476e6171c317a70f[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 13:43:02 2019 -0700
+
+    stopped items from overlapping with side menu
+
+[33mcommit aea7e8a1515d3cb454491c710f353b8679cf0ca3[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 13:37:52 2019 -0700
+
+    added anchor element to home button
+
+[33mcommit 325b1fc34cd039fd28aa735091917c490df978c4[m
+Merge: 707250c d804232
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 13:17:21 2019 -0700
+
+    Merge branch 'master' of https://github.com/A01056715/Shopping-Cart into develop
+
+[33mcommit 707250c433c61b103b5179f330ca578e0a90777b[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:58:16 2019 -0700
+
+    changed errors on layout
+
+[33mcommit f178720de1b848b913b5e0065f8b67dc71f486e0[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:55:36 2019 -0700
+
+    Revert "changed checkbox and moved shopping cart icon to the right"
+    
+    This reverts commit 97cc9be5b112ba279da28f30f4b7ba593161c147.
+
+[33mcommit c3c2c882c9c01c572d3859572434fa3943fc65ba[m
+Merge: 6de6f1a d929c28
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:53:25 2019 -0700
+
+    changed
+
+[33mcommit d929c28beca022b1ab28fd479f153a098cba5ed3[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:51:13 2019 -0700
+
+    fixed price range header
+
+[33mcommit ce5751857c899c8aadabfa2d12320f2582697440[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:43:56 2019 -0700
+
+    made home button anchor element
+
+[33mcommit 6de6f1ab79ee19a9d13b8b083389e76ea7187158[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:39:51 2019 -0700
+
+    something
+
+[33mcommit f48a2369ae8cfff8b644946df17f150a4e66fccf[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 12:37:54 2019 -0700
+
+    changed home icon to anchor element
+
+[33mcommit 8a89f178f49c75fbdb2fb5a3ca3bcead5214de81[m
+Merge: f12e920 97cc9be
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sun Mar 10 11:47:14 2019 -0700
+
+    Merge pull request #65 from A01056715/develop
+    
+    changed checkbox and moved shopping cart icon to the right
+
+[33mcommit 97cc9be5b112ba279da28f30f4b7ba593161c147[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sun Mar 10 11:46:23 2019 -0700
+
+    changed checkbox and moved shopping cart icon to the right
+
+[33mcommit f12e920f126563582be4dd504e3f55bf33a1452f[m
+Merge: c62c26d e8cb8ef
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 22:22:37 2019 -0800
+
+    Merge pull request #63 from A01056715/develop
+    
+    stylized register page
+
+[33mcommit e8cb8ef2894eaea4b44f858a9071d56381aef08b[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 22:20:18 2019 -0800
+
+    stylized register page
+
+[33mcommit c62c26d4b624be16a79640d6ee2c1480059f51d9[m
+Merge: bbd50fb f93e7b9
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 22:12:48 2019 -0800
+
+    Merge pull request #61 from A01056715/develop
+    
+    stylized forgot password page
+
+[33mcommit f93e7b96ad4d7b58965fafa1ab08f4bb0fa190c9[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 22:07:47 2019 -0800
+
+    modified the back button
+
+[33mcommit 6290d6f557e08b9e2a267e303af6996fc7129f6b[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 22:01:46 2019 -0800
+
+    stylized forgot password page
+
+[33mcommit bbd50fb5202ef41f51510eccb67019d6409dcf43[m
+Merge: e965df7 79933bb
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 21:32:43 2019 -0800
+
+    Merge pull request #59 from A01056715/develop
+    
+    modified hard coded webapp title
+
+[33mcommit 79933bbe912507ca90a70a7c372199ce7d3e3e1b[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 21:31:43 2019 -0800
+
+    modified hard coded webapp title
+
+[33mcommit e965df7be181ee63dfcd2347c01fd62c5dc3c392[m
+Merge: ba64221 c640a01
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 20:03:26 2019 -0800
+
+    Merge pull request #57 from A01056715/develop
+    
+    stylized input and button for inventory, changed forgot password to reset password on login page
+
+[33mcommit c640a015b3429d22ba31d12519c24d59898e5e55[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 20:02:20 2019 -0800
+
+    remove jquery function
+
+[33mcommit 2870c686bb3a471183a303e6d6d5cb3f8622f580[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 20:01:16 2019 -0800
+
+    deleted range selector
+
+[33mcommit 8d7ebe1214e07a283495dfe7766e6a7a7eb21291[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 19:59:26 2019 -0800
+
+    styled input and button
+
+[33mcommit ba6422133012f1d4c1cb1f0ebd0f2fcd8da3fadc[m
+Merge: 2bac2f4 d5da98e
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 18:57:01 2019 -0800
+
+    Merge pull request #55 from A01056715/develop
+    
+    added semantic ui for login page
+
+[33mcommit d5da98ea4ec4eca89551eba71f3de578f6c8f1d4[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 18:55:44 2019 -0800
+
+    added semantic ui for login page
+
+[33mcommit 2bac2f4cb9f2339af3414bab641344d1c78dcc98[m
+Merge: b85564f f7d16eb
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 17:33:33 2019 -0800
+
+    Merge pull request #54 from A01056715/develop
+    
+    added webapp name to be displayed at the top left
+
+[33mcommit f7d16eb1cc6ab3734ae361f1fa65fb9bf7525a46[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 17:31:55 2019 -0800
+
+    added webapp name to be displayed
+
+[33mcommit b85564f3c886dea73cd92192ebab576d7faf221d[m
+Merge: 1f15b1d 8c45333
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 17:26:05 2019 -0800
+
+    Merge pull request #53 from A01056715/develop
+    
+    Merged Inventory.blade.php with Inventory2.blade.php (renamed to Inventory.blade.php)
+
+[33mcommit 8c45333d3344a88fa0c2b3128178e40565656f31[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 17:24:35 2019 -0800
+
+    merged inventory with inventory2
+
+[33mcommit 8c317996a1b266569e9b51e09943e50b28f12871[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 17:14:05 2019 -0800
+
+    merged inventory and inventory2
+
+[33mcommit 1f15b1d4de9409f4ffe69e5c94dbe9d10f3097c1[m
+Merge: 347165f 18e72e7
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 16:38:11 2019 -0800
+
+    Merge pull request #52 from A01056715/develop
+    
+    Added SQL statement that selects items based on the category
+
+[33mcommit 18e72e77d999ee8414501bfc5b458ca397d4a53c[m
+Merge: 0e03612 930086a
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 16:34:30 2019 -0800
+
+    Merge branch'addSQL' into develop
+
+[33mcommit 930086a52650bf68953ed3bd773df5ecc15c8b8b[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 16:32:15 2019 -0800
+
+    added sql statement that selects item based on category
+
+[33mcommit 0e03612ec03e1a2ec8b0a0fa6f4bf3204ad15496[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 13:49:41 2019 -0800
+
+    added delete token statement
+
+[33mcommit 379de5d36c9bac64abf26444333ac343e43cb771[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Sat Mar 9 12:54:47 2019 -0800
+
+    replaced mail section in .env
+
+[33mcommit 347165f18128781283846a58611ed726ccaf91d0[m
+Merge: d7c732d 881b9a2
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 00:11:30 2019 -0800
+
+    Merge pull request #51 from Davin-Deol/develop
+    
+    Implemented User Base
+
+[33mcommit 881b9a2123d9fd1e0e73947dc60b1675e66fe407[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Sat Mar 9 00:05:38 2019 -0800
+
+    Implemented Reset Passwords
+
+[33mcommit 82bbe98ee5f8adb302a6caf08275c9fedda3df0a[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Fri Mar 8 23:35:53 2019 -0800
+
+    Implemented Mail
+
+[33mcommit ae8c9f1fe4cd62ef5ca6f90ce1e29e96a4bca458[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Fri Mar 8 22:12:31 2019 -0800
+
+    Made Forgot Password views
+
+[33mcommit 85f870c43d567a3b2f6b37994675c406defd2562[m
+Merge: 08c3683 d7c732d
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Thu Mar 7 13:41:31 2019 -0800
+
+    Merge branch 'develop' into login
+
+[33mcommit d7c732d7be8189609f27c3611b0672e1a5c3fc37[m
+Merge: 91a727e b183e36
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Thu Mar 7 13:24:36 2019 -0800
+
+    Merge pull request #50 from A01056715/develop
+    
+    tried connecting inventory2 to layout
+
+[33mcommit b183e36ee7e5198805825872d6d6f803dcffaa42[m
+Merge: f1418a9 80d3338
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 12:46:53 2019 -0800
+
+    Merge branch 'itemLayout' into develop
+
+[33mcommit 80d333886ef45e0f60e432839f96a2343fa7c612[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 12:42:41 2019 -0800
+
+    modified inventory2
+
+[33mcommit f1418a9de51a2796433eeea41a4aa27d6978f2f7[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 11:53:54 2019 -0800
+
+    modified inventory2
+
+[33mcommit 36a84c91c7b37c5ea0db9e147e2b388f4c0e5137[m
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 11:38:40 2019 -0800
+
+    modified inventory controller
+
+[33mcommit 08c3683a7079b7f8e5763cdc1a2f1f03d5f5d4f6[m
+Merge: e444b87 91a727e
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Thu Mar 7 11:36:36 2019 -0800
+
+    Merge branch 'develop' into login
+
+[33mcommit e444b877aff9a558b895702083888e85a1a70a7c[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Thu Mar 7 11:35:49 2019 -0800
+
+    Added ForgotPasswordController
+
+[33mcommit 91a727e7afd8f1f681d0a0810aa31493f8aead9c[m
+Merge: 08c290c 9d96141
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Thu Mar 7 11:35:02 2019 -0800
+
+    Merge pull request #47 from A01056715/develop
+    
+    added frontend folder in views directory
+
+[33mcommit 9d96141b94604c0e042c844eac77ae53c249fd79[m
+Merge: 49627f0 08c290c
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 11:34:04 2019 -0800
+
+    modified inventory controller
+
+[33mcommit 49627f065961c736554b2c6d8bfb0c48d3cdf72b[m
+Merge: 197cf85 2a93c18
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 11:18:50 2019 -0800
+
+    modified inventory controller
+
+[33mcommit 197cf8508a9d15e6464585d82133bcbdcf28797c[m
+Merge: cf34611 95d12f2
+Author: Kenichi Okiebisu <a01056715@gmail.com>
+Date:   Thu Mar 7 11:06:23 2019 -0800
+
+    moved semanticUI directory
+
+[33mcommit 731fee64f8adc34abb057da038cf077fa35ec9cf[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 6 20:28:03 2019 -0800
+
+    User can login and logout
+
+[33mcommit 08c290c4423551ff8a169d3006f3aa911e299140[m
+Merge: 6f7e27d 0ef3880
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 6 15:22:20 2019 -0800
+
+    Merge pull request #49 from redlon23/develop
+    
+    put items into cart then checkout
+
+[33mcommit 0ef3880b4a9e0ece53043403895074a138d79299[m
+Author: PamirKantar <pamirkantar21@gmail.com>
+Date:   Wed Mar 6 15:16:32 2019 -0800
+
+    put items into cart then checkout
+
+[33mcommit 6f7e27d0d1cf2fcb93531f6039adb39f938dd392[m
+Merge: 95d12f2 066cc1e
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 6 13:53:56 2019 -0800
+
+    Merge pull request #48 from Davin-Deol/develop
+    
+    Prepped code for 4th meeting
+
+[33mcommit 066cc1e42561b3902275384bcc1a84c44172cbe6[m
+Author: Davin Deol <davindeol@gmail.com>
+Date:   Wed Mar 6 13:52:28 2019 -0800
+
+    Prepped upto Login
+
+[33mcommit 2a93c18aeabefa15fd685f39c8c8619eac0b7d0e[m
+Merge: cf34611 95d12f2
+Author: kokiebisu <43525282+A01056715@users.noreply.github.com>
+Date:   Wed Mar 6 13:06:16 2019 -0800
+
+    Merge branch 'develop' into develop
