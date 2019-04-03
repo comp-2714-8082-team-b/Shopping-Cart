@@ -54,6 +54,7 @@ class InventoryController extends Controller {
      */
     public function getItems(Request $request, $index = 0)
     {
+
         $validator = Validator::make($request->all(),
             [
                 'priceMin' => 'min:0|max:9999.99',
@@ -72,12 +73,12 @@ class InventoryController extends Controller {
             $sql = "SELECT DISTINCT i.modelNumber, i.itemName, i.itemPrice,
              i.salePrice, i.brandName, i.stockQuantity, i.description as description,
               GROUP_CONCAT(DISTINCT(c.categoryName) SEPARATOR ', ') as categories,
-               GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ') 
-               as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber = c.modelNumber 
-               LEFT JOIN Picture p ON c.modelNumber = p.modelNumber 
-               WHERE FIND_IN_SET(c.categoryName, ('$categories')) 
-               AND (itemPrice BETWEEN $priceMin AND $priceMax) 
-               AND (brandName IN ($brands)) 
+               GROUP_CONCAT(DISTINCT(p.imgUrl) SEPARATOR ', ')
+               as pictures FROM Item i LEFT JOIN Category c ON i.modelNumber = c.modelNumber
+               LEFT JOIN Picture p ON c.modelNumber = p.modelNumber
+               WHERE FIND_IN_SET(c.categoryName, ('$categories'))
+               AND (itemPrice BETWEEN $priceMin AND $priceMax)
+               AND (brandName IN ($brands))
                AND (i.itemName LIKE $searchKey OR i.description LIKE $searchKey) GROUP BY i.modelNumber ORDER BY $sortBy LIMIT $index,10";
 
             //return $sql;

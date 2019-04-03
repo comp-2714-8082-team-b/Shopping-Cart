@@ -84,13 +84,13 @@
                   <h2>Price Range</h2>
                     <div class="ui ">
                     From
-                    </div>             
+                    </div>
                     <div class="ui input">
-                        <input type="number" placeholder="$ Min..." id='priceMin' name='priceMin'>
+                        <input type="number" min='0' max='9999' placeholder="$ Min..." id='priceMin' name='priceMin'>
                     </div>
                     Up To
                     <div class="ui input">
-                        <input type="number" placeholder="$ Max..." id='priceMax' name='priceMax' />
+                        <input type="number" max='9999' placeholder="$ Max..." id='priceMax' name='priceMax' />
                     </div>
                     <button class="ui primary button">
                         Save
@@ -244,6 +244,7 @@
 @include('item', ['items' => $items ])
 </div>
 <script>
+
     var transitionSpeed = 300;
     var transitionDelay = 2000;
     function saveOrDeleteUser(saveOrDelete, formNumber)
@@ -295,8 +296,8 @@
             }
         });
     }
-    
-    
+
+
     $('.message .close').on('click', function() {
         $(this)
             .closest('#ajaxResultBox')
