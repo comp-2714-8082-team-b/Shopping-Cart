@@ -1,6 +1,13 @@
 @extends('Layout/layout')
 @include('Layout/header')
 @section('content')
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Racing+Sans+One');
+
+    * {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+</style>
 <div class="ui top attached menu">
     <a href="./" class="item">
         {{ config('app.name', 'Laravel') }}
@@ -9,7 +16,7 @@
         <i class="home icon"></i>
     </a>
     @if (\Auth::check())
-    <a href="{{ route('login')}}" class="item">
+    <a href="{{ route('login')}}" class="item" style="color: red">
         Login
     </a>
     <a class="item">

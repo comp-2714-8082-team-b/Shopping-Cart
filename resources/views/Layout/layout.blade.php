@@ -33,6 +33,7 @@ and open the template in the editor.
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/dropdown.js') }}"></script>
         <script src="{{ asset('public/js/jquery.particleground.min.js') }}"></script>
+    
         <script>
             $('.ui.sidebar').sidebar('toggle');
             function shortenItemDescriptions()
@@ -70,6 +71,12 @@ and open the template in the editor.
             });
         </script>
     </head>
+    <style>
+    * {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    
+    </style>
     <body>
         @if ($showHeader)
             <div class="ui top attached menu large stackable inverted">
