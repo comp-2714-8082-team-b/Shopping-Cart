@@ -112,10 +112,21 @@
             </div>
         </div>
         <div class="ui right aligned grid">
-            <div class="left floated left aligned eight wide column">
-                <button class="positive ui button">Buy</button>
+            <div class="left floated left aligned four wide column">
+                <button class="positive ui centered button">Buy</button>
+                <div class="ui horizontal divider">
+                  Or
+                </div>
+                <form target="_blank" action="https://bitcoinpay.com/sci/invoice/generate/" method="post">
+                  <input type="hidden" name="request_str" value="l9oOn3FeQRpiby_DahU6Ojt2bqRbcJOtziqKot7N-PeERakTv54pSPD89r-FkQ3-LhPFfjc9G7lYHIfAqDiFayhe0hQKErraXVWfT4-n8R5Fsf5diMp5_cZTx2dLqP1hkju59CRHQzdkFE-hroHx2uAIK9WEZ53i6K720o8KQXtA4Rtfv2amathpagvpYpyBAzy8xGNlVwnzYdfFOF2NFwnTcwkCzoTNbOzapOC1LJWTmNNAp9kq7Q0FdQ9jwzdA3lXnYTJtJvxbq_CeeA1XFCv57c8as3Bbjpx6oXx1-xbDySnyqdvhLVUB1WiExL-SXf99zPdlLEjmYLE=">
+                  <input type="hidden" name="amount" value="{{$item->itemPrice}}">
+                  <input type="hidden" name="currency" value="CAD">
+                  <input type="hidden" name="memo" value="{{$item->itemName}}">
+                  <input type="image" src="https://bitcoinpay.com/static/img/btc-accepted-sm.png">
+                </form>
             </div>
             <div class="right floated right aligned eight wide column">
+
                 <button class="ui facebook button">
                     <i class="facebook icon"></i>
                     Facebook
