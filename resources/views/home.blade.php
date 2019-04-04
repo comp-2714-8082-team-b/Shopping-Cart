@@ -1,5 +1,11 @@
 @extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
+<style>
+h2 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+</style>
 <div class="ui bottom attached pushable stackable grid">
     <div class="row">
         <div class="four wide column">
@@ -32,16 +38,16 @@
                             <div class="two wide fields">
                                 <div class="field">
                                     <div class="ui input">
-                                        <input max="9999" type="number" placeholder="$ Min" id='priceMin' name='priceMin'>
+                                        <input max="9999" type="number" placeholder="$ Min" id='priceMin' name='priceMin' value='0'>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui input">
-                                        <input max="9999" type="number" placeholder="$ Max" id='priceMax' name='priceMax' />
+                                        <input max="9999" type="number" placeholder="$ Max" id='priceMax' name='priceMax' value='9999' />
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="ui red button">Apply</button>
+                            <button type="submit" class="ui red button" id='submitPrice'>Apply</button>
                         </div>
                     </div>
                     <div class="item">
@@ -79,6 +85,8 @@
 </div>
 <script>
     $(document).ready(function () {
+
+
         $("body").on('click', '.addToCartButton', function () {
             var modelNumber = $(this).val();
             var quantity = $(this).closest('.fields').find('.quantity').val();
@@ -105,7 +113,7 @@
                 }
             });
         });
-        
+
         $("body").on('click', '.deleteItem', function () {
             var modelNumber = $(this).val();
             $.ajax({
@@ -123,15 +131,28 @@
             });
             $(this).closest(".item").remove();
         });
-        
+
         $("form :input").change(function() {
             sendRequest(0);
         });
-        
+        var maxPriceProblem;
+        var minPriceProblem;
         function sendRequest(index) {
+             maxPriceProblem = $('#priceMax').val();
+             minPriceProblem = $('#priceMin').val();
+             if( minPriceProblem < 0) {
+               $("#priceMin").parent().parent().addClass('error');
+               alert('Min price cannot be less then 0');
+               return 0;
+             }
+            if(maxPriceProblem > 9999) {
+              $("#priceMax").parent().parent().addClass('error');
+              alert('Max price cannot be more than 9999');
+              return 0;
+            }
             $("#itemsSection").html("");
             $("#itemsSection").html($("#loadingClone").html());
-            
+
             $.ajax({
                 url: "{{ route('getItems') }}/" + index,
                 type: "POST",
@@ -154,15 +175,17 @@
                 }
             });
         }
-        
-        $("#submitPrice").click(function () {
+
+
+        $("#submitPrice").click(function (e) {
+        e.preventDefault();
             sendRequest(0);
         })
-        
+
         sendRequest(0);
     });
-    
-    
+
+
     $('.message .close').on('click', function() {
         $(this)
             .closest('#ajaxResultBox')
