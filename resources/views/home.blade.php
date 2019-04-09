@@ -1,6 +1,7 @@
 @extends('Layout/layout', ['showHeader' => true, 'title' => 'Home'])
 @section('content')
 <style>
+/* Fixed to Source Sans Pro (ken) */
 h2 {
     font-family: 'Source Sans Pro', sans-serif;
 }
