@@ -2,7 +2,7 @@
 @section('content')
 <style>
 h2 {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 </style>
