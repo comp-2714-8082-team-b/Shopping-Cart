@@ -165,7 +165,7 @@ class InventoryController extends Controller {
 
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
-                    $filename = $file->store(null, 's3', 'public');
+                    $filename = $file->store(null, 'public', 'public');
                     DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', $modelNumber)");
                 }
             }
@@ -215,7 +215,7 @@ class InventoryController extends Controller {
             $modelNumber = ($modelNumber == $formerModelNumber) ? $formerModelNumber : $modelNumber;
             if ($request->file('files')) {
                 foreach ($request->file('files') as $file) {
-                    $filename = $file->store(null, 's3', 'public');
+                    $filename = $file->store(null, 'public', 'public');
                     DB::insert("INSERT INTO Picture (imgUrl, modelNumber) VALUES ('$filename', $modelNumber)");
                 }
             }
@@ -243,7 +243,7 @@ class InventoryController extends Controller {
         );
         if (!$validator->fails()) {
             $filePath = $request->input("filePath");
-            if (Storage::disk('s3')->delete($filePath)) {
+            if (Storage::disk('public')->delete($filePath)) {
                 DB::delete("DELETE FROM Picture WHERE imgUrl='$filePath'");
             }
         }
@@ -261,7 +261,7 @@ class InventoryController extends Controller {
             $modelNumber = $pdo->quote($request->input("modelNumber"));
             $pictures = DB::select("SELECT imgUrl FROM Picture WHERE modelNumber=$modelNumber");
             foreach ($pictures as $picture) {
-                Storage::disk('s3')->delete($picture->imgUrl);
+                Storage::disk('public')->delete($picture->imgUrl);
             }
             DB::delete("DELETE FROM Item WHERE modelNumber=$modelNumber");
         } else {
