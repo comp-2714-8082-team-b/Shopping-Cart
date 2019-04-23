@@ -29,6 +29,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/list.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/message.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/semanticUI/semantic/out/components/icon.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
         <script src="{{ asset('public/semanticUI/semantic/out/components/form.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/transition.js') }}"></script>
         <script src="{{ asset('public/semanticUI/semantic/out/components/dropdown.js') }}"></script>
@@ -73,7 +74,7 @@ and open the template in the editor.
     </head>
     <style>
     * {
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
     }
     
     </style>
